@@ -40,21 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OperationType.cs" />
-    <Compile Include="Value\CustomerArgs.cs" />
+    <Compile Include="Model\EntranceDemon.cs" />
     <Compile Include="Model\QueueFactory.cs" />
-    <Compile Include="QueueType.cs" />
-    <Compile Include="Model\Customer.cs" />
-    <Compile Include="Interface\ICustomerSource.cs" />
     <Compile Include="Model\BankQueueCommon.cs" />
     <Compile Include="Model\BankQueueProcessor.cs" />
     <Compile Include="Model\CashireBankQueue.cs" />
     <Compile Include="Model\CreditBankQueue.cs" />
     <Compile Include="Model\OperationalBankQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Value\Payload.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Bank.Common\Bank.Common.csproj">
+      <Project>{f8eefbd4-8138-4bcd-a4c0-7975b7369968}</Project>
+      <Name>Bank.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

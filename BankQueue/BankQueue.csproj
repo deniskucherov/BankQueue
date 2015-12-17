@@ -85,8 +85,8 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Model\CustomerParser.cs" />
-    <Compile Include="Model\EntranceDemon.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
+    <Compile Include="ViewModel\CommonServiceViewModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
     <Compile Include="ViewModel\EntranceViewModel.cs" />
     <Compile Include="ViewModel\QueueViewModel.cs" />
@@ -191,6 +191,10 @@
     <ProjectReference Include="..\Bank.Common\Bank.Common.csproj">
       <Project>{f8eefbd4-8138-4bcd-a4c0-7975b7369968}</Project>
       <Name>Bank.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BankQueue.Core\BankQueue.Core.csproj">
+      <Project>{005d5f22-852b-4db9-8305-8803ad984ae3}</Project>
+      <Name>BankQueue.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\BankStatistic.Module\BankStatistic.Module.csproj">
       <Project>{fcf90492-fdec-4dea-a7c9-afaf4bc34d0a}</Project>

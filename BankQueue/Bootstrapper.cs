@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Bank.Common;
+using Bank.Common.Interface;
+using BankQueue.Core.Model;
 using BankQueue.View;
 using BankStatistic.Module;
 using Microsoft.Practices.Unity;
@@ -47,6 +49,8 @@ namespace BankQueue
         protected override void ConfigureContainer()
         {
             base.ConfigureContainer();
+
+            Container.RegisterType<IEntranceDemon, EntranceDemon>(new ContainerControlledLifetimeManager());
 
         }
     }

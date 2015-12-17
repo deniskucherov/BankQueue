@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Security.Policy;
-using BankQueue.Core.Model;
 
-namespace BankQueue.Core.Value
+namespace Bank.Common.Value
 {
     public sealed class CustomerArgs
     {

@@ -1,4 +1,4 @@
-﻿namespace BankQueue.Core.Model
+﻿namespace Bank.Common
 {
     public class Customer
     {

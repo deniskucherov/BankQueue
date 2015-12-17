@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using BankQueue.Core.Interface;
-using BankQueue.Core.Value;
+using Bank.Common;
+using Bank.Common.Interface;
+using Bank.Common.Value;
 
 namespace BankQueue.Core.Model
 {

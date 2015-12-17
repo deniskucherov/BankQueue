@@ -42,8 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationRegion.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="Interface\ICustomerSource.cs" />
+    <Compile Include="Interface\IEntranceDemon.cs" />
+    <Compile Include="Interface\IEntranceInformation.cs" />
+    <Compile Include="OperationType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueType.cs" />
+    <Compile Include="Value\CustomerArgs.cs" />
+    <Compile Include="Value\Payload.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

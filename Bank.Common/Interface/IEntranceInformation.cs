@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankQueue.Core.Value
+namespace Bank.Common.Interface
 {
-    public sealed class Payload
+    public interface IEntranceInformation
     {
-        public OperationType Operation { get; private set; }
     }
 }
