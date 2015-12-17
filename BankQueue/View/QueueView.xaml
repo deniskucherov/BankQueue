@@ -4,9 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankQueue.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             xmlns:control="clr-namespace:BankQueue.Control"
+             mc:Ignorable="d" Height="100" d:DesignWidth="300">
+    <GroupBox Header="Queue">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <control:QueueStandartControl />
+            <control:QueueStandartControl Grid.Row="1" />
+            <control:QueueStandartControl Grid.Row="2" />
             
-    </Grid>
+        </Grid>
+    </GroupBox>
+    
 </UserControl>

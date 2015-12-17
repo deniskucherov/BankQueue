@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankQueue.ViewModel;
 
 namespace BankQueue.View
 {
@@ -20,9 +21,12 @@ namespace BankQueue.View
     /// </summary>
     public partial class OperatingRoomView : UserControl
     {
-        public OperatingRoomView()
+        public OperatingRoomView(OperationalViewModel viewModel)
         {
+            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+
             InitializeComponent();
+            this.DataContext = viewModel;
         }
     }
 }

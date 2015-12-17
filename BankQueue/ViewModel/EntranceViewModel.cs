@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Bank.Common;
 using Bank.Common.Interface;
+using BankQueue.DomainEvents;
+using Prism.Events;
 
 namespace BankQueue.ViewModel
 {
@@ -12,10 +14,18 @@ namespace BankQueue.ViewModel
     {
         private readonly IEntranceDemon _entranceDemon;
 
-        public EntranceViewModel(IEntranceDemon entranceDemon)
+        public EntranceViewModel(IEntranceDemon entranceDemon, IEventAggregator eventAggregator)
         {
             if (entranceDemon == null) throw new ArgumentNullException(nameof(entranceDemon));
+
             _entranceDemon = entranceDemon;
+
+            var customerSource = entranceDemon as ICustomerSource;
+            if (customerSource != null)
+            {
+                customerSource.CustomerArrivedEvent += (sender, args) => 
+                { eventAggregator.GetEvent<CustomerArrivedEvent>().Publish(args); };
+            }
         }
 
         protected override void ExecuteStartCommand()

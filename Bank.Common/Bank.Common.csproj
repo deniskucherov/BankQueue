@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ApplicationRegion.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Interface\IQueueProcessor.cs" />
     <Compile Include="Interface\ICustomerSource.cs" />
     <Compile Include="Interface\IEntranceDemon.cs" />
     <Compile Include="Interface\IEntranceInformation.cs" />

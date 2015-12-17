@@ -12,6 +12,11 @@ namespace BankQueue.ViewModel
     {
         private ICommand _startStopCommand;
 
+        public AdminViewModel()
+        {
+            
+        }
+
         public ICommand StartStopCommand
         {
             get { return _startStopCommand ?? (_startStopCommand = new DelegateCommand(ExecuteStartStopCommand)); }

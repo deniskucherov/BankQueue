@@ -4,30 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="Bank queue simulator.." Height="350" Width="525">
+    
+ <Window.Resources>
+     <Style TargetType="{x:Type GridSplitter}">
+         <Setter Property="Height" Value="2" />
+         <Setter Property="Background" Value="Gray" />
+         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+     </Style>
+ </Window.Resources>
+    
     <Grid Background="GhostWhite" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="50" />
         </Grid.RowDefinitions>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            
-            <ContentControl prism:RegionManager.RegionName="Admin" />
-            <ContentControl Grid.Column="1" prism:RegionManager.RegionName="DataService" />
-            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="ReportService" />
-            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="Entrance" />
-        </Grid>
+        <GroupBox Header="Administration" Padding="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MaxWidth="150" MinWidth="70" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
+                <ContentControl prism:RegionManager.RegionName="Admin" />
+                <ContentControl Grid.Column="1" prism:RegionManager.RegionName="DataService" />
+                <ContentControl Grid.Column="2" prism:RegionManager.RegionName="ReportService" />
+                <ContentControl Grid.Column="2" prism:RegionManager.RegionName="Entrance" />
+            </Grid>
+
+        </GroupBox>
+        
         <Grid Grid.Row="1">
             <ContentControl prism:RegionManager.RegionName="Queue" />
         </Grid>
@@ -36,11 +49,12 @@
             <ContentControl prism:RegionManager.RegionName="OperationRoom" />
         </Grid>
 
-        <Grid Grid.Row="3">
+        <GridSplitter Grid.Row="3" />
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <ContentControl prism:RegionManager.RegionName="Safe" />

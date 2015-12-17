@@ -2,10 +2,11 @@
 using System.Threading;
 using Bank.Common;
 using Bank.Common.Interface;
+using Bank.Common.Value;
 
 namespace BankQueue.Core.Model
 {
-    public sealed class EntranceDemon : IEntranceDemon
+    public sealed class EntranceDemon : IEntranceDemon, ICustomerSource
     {
         private readonly Timer _timer;
 
@@ -15,6 +16,7 @@ namespace BankQueue.Core.Model
         }
 
         public IEntranceInformation Information { get; }
+        public event EventHandler<CustomerArgs> CustomerArrivedEvent = delegate { };
 
         public void Start()
         {
@@ -28,9 +30,12 @@ namespace BankQueue.Core.Model
 
         private void Callback(object state)
         {
-            
+            var customer = new Customer("Customer " + DateTime.Now.Millisecond.ToString(), 25, Customer.Gender.M);
+
+            var args = new CustomerArgs(customer, QueueType.Credit, new Payload());
+            CustomerArrivedEvent(this, args);
         }
 
-
+        
     }
 }

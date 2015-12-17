@@ -51,6 +51,7 @@ namespace BankQueue
             base.ConfigureContainer();
 
             Container.RegisterType<IEntranceDemon, EntranceDemon>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IQueueProcessor, BankQueueProcessor>(new ContainerControlledLifetimeManager());
 
         }
     }

@@ -12,21 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BankQueue.ViewModel;
 
-namespace BankQueue.View
+namespace BankQueue.Control
 {
     /// <summary>
-    /// Interaction logic for EntranceView.xaml
+    /// Interaction logic for QueueControl.xaml
     /// </summary>
-    public partial class EntranceView : UserControl
+    public partial class QueueStandartControl : UserControl
     {
-        public EntranceView(EntranceViewModel viewModel)
+        public QueueStandartControl()
         {
-            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
-
             InitializeComponent();
-            this.DataContext = viewModel;
         }
     }
 }

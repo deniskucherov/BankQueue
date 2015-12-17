@@ -84,11 +84,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Control\QueueStandartControl.xaml.cs">
+      <DependentUpon>QueueStandartControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DomainEvents\CustomerArrivedEvent.cs" />
     <Compile Include="Model\CustomerParser.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\CommonServiceViewModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
     <Compile Include="ViewModel\EntranceViewModel.cs" />
+    <Compile Include="ViewModel\OperationalViewModel.cs" />
     <Compile Include="ViewModel\QueueViewModel.cs" />
     <Compile Include="View\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
@@ -114,6 +119,10 @@
     <Compile Include="View\SafeView.xaml.cs">
       <DependentUpon>SafeView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\QueueStandartControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -200,6 +209,9 @@
       <Project>{fcf90492-fdec-4dea-a7c9-afaf4bc34d0a}</Project>
       <Name>BankStatistic.Module</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
