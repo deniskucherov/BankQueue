@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BankQueue"
+        xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <Grid Background="GhostWhite" Margin="5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -18,11 +19,33 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            
+            <ContentControl prism:RegionManager.RegionName="Admin" />
+            <ContentControl Grid.Column="1" prism:RegionManager.RegionName="DataService" />
+            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="ReportService" />
+            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="Entrance" />
         </Grid>
 
         <Grid Grid.Row="1">
-            
+            <ContentControl prism:RegionManager.RegionName="Queue" />
+        </Grid>
+        
+        <Grid Grid.Row="2">
+            <ContentControl prism:RegionManager.RegionName="OperationRoom" />
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ContentControl prism:RegionManager.RegionName="Safe" />
+            <ContentControl Grid.Column="1" prism:RegionManager.RegionName="CashDesk" />
+            <ContentControl Grid.Column="2" prism:RegionManager.RegionName="Statistic" />
         </Grid>
     </Grid>
 </Window>

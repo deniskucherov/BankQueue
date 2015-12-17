@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Common", "Service.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{07C439BE-45D8-4038-B1C3-B6B5DAA575AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankStatistic.Module", "BankStatistic.Module\BankStatistic.Module.csproj", "{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.Common", "Bank.Common\Bank.Common.csproj", "{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,14 @@ Global
 		{278BA42B-7F97-497A-A1AB-F37275280228}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{278BA42B-7F97-497A-A1AB-F37275280228}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{278BA42B-7F97-497A-A1AB-F37275280228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

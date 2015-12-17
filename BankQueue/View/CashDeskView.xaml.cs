@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BankQueue.View
 {
     /// <summary>
-    /// Interaction logic for StatisticView.xaml
+    /// Interaction logic for CashDeskView.xaml
     /// </summary>
-    public partial class StatisticView : UserControl
+    public partial class CashDeskView : UserControl
     {
-        public StatisticView()
+        public CashDeskView()
         {
             InitializeComponent();
         }

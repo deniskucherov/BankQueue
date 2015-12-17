@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BankQueue
 {
@@ -13,5 +14,9 @@ namespace BankQueue
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            (new Bootstrapper()).Run();
+        }
     }
 }

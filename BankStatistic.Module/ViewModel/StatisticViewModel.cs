@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Prism.Mvvm;
 
-namespace BankQueue.ViewModel
+namespace BankStatistic.Module.ViewModel
 {
-    public abstract class CommonViewModel : BindableBase
+    public sealed class StatisticViewModel
     {
-
     }
 }

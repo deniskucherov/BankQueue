@@ -12,21 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BankQueue.ViewModel;
 
-namespace BankQueue.View
+namespace BankStatistic.Module
 {
     /// <summary>
-    /// Interaction logic for AdminView.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class AdminView : UserControl
+    public partial class StatisticView : UserControl
     {
-        public AdminView(AdminViewModel viewModel)
+        public StatisticView()
         {
-            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
-
             InitializeComponent();
-            this.DataContext = viewModel;
         }
     }
 }
