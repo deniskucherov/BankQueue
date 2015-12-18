@@ -11,6 +11,7 @@ namespace BankQueue.Core.Model
 {
     public sealed class BankQueueProcessor : IQueueProcessor
     {
+        private readonly object _syncRoot = new object();
         private readonly Dictionary<QueueType, BankQueueCommon> _workingQueues;
         private int _totalCustomersCount;
         private int _currentCustomersCount;
@@ -35,43 +36,132 @@ namespace BankQueue.Core.Model
 
         public void AddCustomer(CustomerArgs args)
         {
-            if (args == null) throw new ArgumentNullException(nameof(args));
+            try
+            {
+                if (args == null) throw new ArgumentNullException(nameof(args));
 
-            var queue = _workingQueues[args.QueueType];
-            if (queue == null)
-                throw new ApplicationException("queue == null");
+                var queue = _workingQueues[args.QueueType];
+                if (queue == null)
+                    throw new ApplicationException("queue == null");
 
-            queue.AddCustomer(args);
-            Interlocked.Decrement(ref _totalCustomersCount);
+                lock (_syncRoot)
+                {
+                    queue.AddCustomer(args);
+                    _totalCustomersCount++;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("AddCustomer error.", ex);
+            }
+        }
+
+        public void CloseAndClearQueue(IEnumerable<QueueType> types)
+        {
+            try
+            {
+                if (types == null)
+                    throw new ArgumentNullException(nameof(types));
+
+                lock (_syncRoot)
+                {
+                    foreach (var t in types)
+                    {
+                        var queue = _workingQueues[t];
+                        if (queue == null)
+                            throw new ApplicationException("queue == null");
+                        queue.CloseAndClear();
+                        _totalCustomersCount = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("CloseQueue", ex);
+            }
         }
 
         public void CloseQueue(IEnumerable<QueueType> types)
         {
-            if (types == null)
-                throw new ArgumentNullException(nameof(types));
-
-            foreach (var t in types)
+            try
             {
-                var queue = _workingQueues[t];
-                if (queue == null)
-                    throw new ApplicationException("queue == null");
-                queue.Close();
+                if (types == null)
+                    throw new ArgumentNullException(nameof(types));
+
+                lock (_syncRoot)
+                {
+                    foreach (var t in types)
+                    {
+                        var queue = _workingQueues[t];
+                        if (queue == null)
+                            throw new ApplicationException("queue == null");
+                        queue.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("CloseQueue", ex);
+            }
+        }
+
+        public void OpenQueue(IEnumerable<QueueType> types)
+        {
+            try
+            {
+                if (types == null)
+                    throw new ArgumentNullException(nameof(types));
+
+                lock (_syncRoot)
+                {
+                    foreach (var t in types)
+                    {
+                        var queue = _workingQueues[t];
+                        if (queue == null)
+                            throw new ApplicationException("queue == null");
+                        queue.Open();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("OpenQueue", ex);
             }
         }
 
         public CustomerArgs GetNextCustomer(QueueType type)
         {
             var queue = QueueByType(type);
-            return queue.GetCustomer();
+            try
+            {
+                Monitor.Enter(_syncRoot);
+                Interlocked.Decrement(ref _totalCustomersCount);
+                return queue.GetCustomer();
+            }
+            catch(Exception ex)
+            {
+                throw new ApplicationException("GetNextCustomer error.", ex);
+            }
+            finally
+            {
+                Monitor.Exit(_syncRoot);
+            }
         }
 
         private BankQueueCommon QueueByType(QueueType type)
         {
-            var queue = _workingQueues[type];
-            if (queue == null)
-                throw new ApplicationException("queue == null");
+            try
+            {
+                var queue = _workingQueues[type];
+                if (queue == null)
+                    throw new ApplicationException("queue == null");
 
-            return queue;
+                return queue;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("QueueByType error.", ex);
+            }
         }
     }
 }
