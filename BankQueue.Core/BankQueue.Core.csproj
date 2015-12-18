@@ -40,14 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\EntranceDemon.cs" />
-    <Compile Include="Model\QueueFactory.cs" />
-    <Compile Include="Model\BankQueueCommon.cs" />
-    <Compile Include="Model\BankQueueProcessor.cs" />
-    <Compile Include="Model\CashireBankQueue.cs" />
-    <Compile Include="Model\CreditBankQueue.cs" />
-    <Compile Include="Model\OperationalBankQueue.cs" />
+    <Compile Include="EntranceDemon.cs" />
+    <Compile Include="OperationRoomProcessor.cs" />
+    <Compile Include="QueueModel\QueueFactory.cs" />
+    <Compile Include="QueueModel\BankQueueCommon.cs" />
+    <Compile Include="QueueModel\BankQueueProcessor.cs" />
+    <Compile Include="QueueModel\CashireBankQueue.cs" />
+    <Compile Include="QueueModel\CreditBankQueue.cs" />
+    <Compile Include="QueueModel\OperationalBankQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkProcess.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bank.Common\Bank.Common.csproj">

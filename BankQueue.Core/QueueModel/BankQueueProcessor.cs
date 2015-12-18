@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using Bank.Common;
 using Bank.Common.Interface;
 using Bank.Common.Value;
 
-namespace BankQueue.Core.Model
+namespace BankQueue.Core.QueueModel
 {
     public sealed class BankQueueProcessor : IQueueProcessor
     {

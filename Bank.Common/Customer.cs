@@ -9,12 +9,6 @@
             Sex = sex;
         }
 
-        public enum  Gender
-        {
-            M,
-            F
-        }
-
         public string Id { get; private set; }
         public int Age { get; private set; } 
         public Gender Sex { get; private set; }

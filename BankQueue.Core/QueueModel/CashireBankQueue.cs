@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bank.Common;
 
-namespace BankQueue.Core.Model
+namespace BankQueue.Core.QueueModel
 {
     public sealed class CashireBankQueue : BankQueueCommon
     {

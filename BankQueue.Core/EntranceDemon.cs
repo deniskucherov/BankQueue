@@ -4,7 +4,7 @@ using Bank.Common;
 using Bank.Common.Interface;
 using Bank.Common.Value;
 
-namespace BankQueue.Core.Model
+namespace BankQueue.Core
 {
     public sealed class EntranceDemon : IEntranceDemon, ICustomerSource
     {
@@ -30,7 +30,7 @@ namespace BankQueue.Core.Model
 
         private void Callback(object state)
         {
-            var customer = new Customer("Customer " + DateTime.Now.Millisecond.ToString(), 25, Customer.Gender.M);
+            var customer = new Customer("Customer " + DateTime.Now.Millisecond.ToString(), 25, Gender.M);
 
             var args = new CustomerArgs(customer, QueueType.Credit, new Payload());
             CustomerArrivedEvent(this, args);

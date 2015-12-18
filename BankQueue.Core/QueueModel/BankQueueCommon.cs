@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bank.Common;
 using Bank.Common.Value;
 
-namespace BankQueue.Core.Model
+namespace BankQueue.Core.QueueModel
 {
     public abstract class BankQueueCommon
     {

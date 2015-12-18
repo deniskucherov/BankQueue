@@ -9,7 +9,11 @@
 
     <GroupBox Header="Operational room">
         <Grid>
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="70" />
+                <RowDefinition Height="Auto" MinHeight="70" />
+                <RowDefinition Height="Auto" MinHeight="70" />
+            </Grid.RowDefinitions>
         </Grid>
     </GroupBox>
     
