@@ -12,21 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BankQueue.ViewModel;
 
-namespace BankQueue.View
+namespace BankQueue.Control
 {
     /// <summary>
-    /// Interaction logic for OperatingRoomView.xaml
+    /// Interaction logic for WorkplaceStandartControl.xaml
     /// </summary>
-    public partial class OperatingRoomView : UserControl
+    public partial class WorkplaceStandartControl : UserControl
     {
-        public OperatingRoomView(OperatingRoomViewModel viewModel)
+        public WorkplaceStandartControl()
         {
-            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
-
             InitializeComponent();
-            this.DataContext = viewModel;
         }
     }
 }

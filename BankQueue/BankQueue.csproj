@@ -84,16 +84,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Control\DepartmentControl.xaml.cs">
+      <DependentUpon>DepartmentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\QueueStandartControl.xaml.cs">
       <DependentUpon>QueueStandartControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\WorkplaceStandartControl.xaml.cs">
+      <DependentUpon>WorkplaceStandartControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DomainEvents\CustomerArrivedEvent.cs" />
     <Compile Include="Model\CustomerParser.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\CommonServiceViewModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
+    <Compile Include="ViewModel\DepartmentViewModel.cs" />
     <Compile Include="ViewModel\EntranceViewModel.cs" />
-    <Compile Include="ViewModel\OperationalViewModel.cs" />
+    <Compile Include="ViewModel\OperatingRoomViewModel.cs" />
     <Compile Include="ViewModel\QueueViewModel.cs" />
     <Compile Include="View\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
@@ -119,7 +126,15 @@
     <Compile Include="View\SafeView.xaml.cs">
       <DependentUpon>SafeView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\DepartmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\QueueStandartControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\WorkplaceStandartControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

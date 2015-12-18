@@ -32,7 +32,7 @@ namespace BankQueue.Core
         {
             var customer = new Customer("Customer " + DateTime.Now.Millisecond.ToString(), 25, Gender.M);
 
-            var args = new CustomerArgs(customer, QueueType.Credit, new Payload());
+            var args = new CustomerArgs(customer, QueueType.Operational, new Payload());
             CustomerArrivedEvent(this, args);
         }
 

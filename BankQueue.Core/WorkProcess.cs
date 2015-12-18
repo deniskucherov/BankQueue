@@ -9,16 +9,16 @@ using Bank.Common.Interface;
 
 namespace BankQueue.Core
 {
-    public sealed class WorkProcess
+    public sealed class WorkProcess : IWorkProcess
     {
         private readonly object _syncRoot = new object();
         private readonly Guid _id;
-        private readonly Workplace _workplace;
+        private readonly IWorkPlace _workplace;
         private readonly Timer _timer;
 
         private readonly IOperationQueue _operationQueue;
 
-        public WorkProcess(Workplace workplace, IOperationQueue operationQueue)
+        public WorkProcess(IWorkPlace workplace, IOperationQueue operationQueue)
         {
             if (workplace == null) throw new ArgumentNullException(nameof(workplace));
             if (operationQueue == null) throw new ArgumentNullException(nameof(operationQueue));
@@ -52,9 +52,9 @@ namespace BankQueue.Core
 
         private void TimerCallback(object state)
         {
+            if (!Monitor.TryEnter(_syncRoot)) return;
             try
             {
-                if (!Monitor.TryEnter(_syncRoot)) return;
                 WorkWithCustomer();
             }
             catch (Exception ex)
@@ -64,7 +64,7 @@ namespace BankQueue.Core
             }
             finally
             {
-                Monitor.Exit(_timer);
+                Monitor.Exit(_syncRoot);
             }
         }
 

@@ -31,7 +31,7 @@ namespace BankQueue.Core.QueueModel
 
         public virtual CustomerArgs GetCustomer()
         {
-            return _customersQueue.Dequeue();
+            return _customersQueue.Count > 0 ? _customersQueue.Dequeue() : null;
         }
 
         public virtual void Open()

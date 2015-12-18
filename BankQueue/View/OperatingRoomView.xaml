@@ -3,17 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BankQueue.View"
-             mc:Ignorable="d" 
+             xmlns:control="clr-namespace:BankQueue.Control"
+             xmlns:viewModel="clr-namespace:BankQueue.ViewModel"
+             xmlns:common="clr-namespace:Bank.Common;assembly=Bank.Common"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:OperatingRoomViewModel}"
              d:DesignHeight="100" d:DesignWidth="300">
 
     <GroupBox Header="Operational room">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" MinHeight="70" />
-                <RowDefinition Height="Auto" MinHeight="70" />
-                <RowDefinition Height="Auto" MinHeight="70" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="150" />
             </Grid.RowDefinitions>
+            
+            <control:DepartmentControl QueueType="{x:Static Member=common:QueueType.Operational}" />
+            <control:DepartmentControl Grid.Row="1" QueueType="{x:Static common:QueueType.Credit}"  />
+            <control:DepartmentControl Grid.Row="2" QueueType="{x:Static common:QueueType.Cashire}" />
         </Grid>
     </GroupBox>
     

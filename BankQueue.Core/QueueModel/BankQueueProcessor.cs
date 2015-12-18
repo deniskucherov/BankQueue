@@ -133,7 +133,7 @@ namespace BankQueue.Core.QueueModel
             try
             {
                 Monitor.Enter(_syncRoot);
-                Interlocked.Decrement(ref _totalCustomersCount);
+                _totalCustomersCount--;
                 return queue.GetCustomer();
             }
             catch(Exception ex)

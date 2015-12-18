@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankQueue.ViewModel
+namespace Bank.Common.Interface
 {
-    public sealed class OperationalViewModel : CommonViewModel
+    public interface IWorkProcess
     {
     }
 }
