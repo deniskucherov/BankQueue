@@ -10,6 +10,7 @@ namespace Service.Common
     [ServiceContract]
     public interface IDataService
     {
+        [OperationContract]
         void SaveCustomers(IEnumerable<CustomerDto> customers);
     }
 }

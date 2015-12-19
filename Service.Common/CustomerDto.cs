@@ -10,6 +10,7 @@ namespace Service.Common
     [DataContract]
     public sealed class CustomerDto
     {
-
+        [DataMember]
+        public string Name { get; set; }
     }
 }

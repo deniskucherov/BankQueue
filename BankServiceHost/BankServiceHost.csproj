@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BankService\BankService.csproj">
+      <Project>{8e0b1b19-695d-4b94-bee8-cb9def20d174}</Project>
+      <Name>BankService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Service.Common\Service.Common.csproj">
       <Project>{278ba42b-7f97-497a-a1ab-f37275280228}</Project>
       <Name>Service.Common</Name>
