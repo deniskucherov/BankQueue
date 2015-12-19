@@ -19,6 +19,8 @@ namespace BankQueue.Core.QueueModel
         public abstract QueueType Type { get; }
         public QueueState State { get; private set; }
 
+        public int Count { get { return _customersQueue.Count; } }
+
         public virtual void AddCustomer(CustomerArgs customer)
         {
             if (customer == null)

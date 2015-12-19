@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReportService
+namespace BankService
 {
-    class Program
+    public class ReportService
     {
-        static void Main(string[] args)
-        {
-             
-        }
     }
 }

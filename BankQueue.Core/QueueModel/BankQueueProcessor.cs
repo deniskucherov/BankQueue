@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using Bank.Common;
 using Bank.Common.Interface;
 using Bank.Common.Value;
+using BankQueue.Core.Annotations;
 
 namespace BankQueue.Core.QueueModel
 {
-    public sealed class BankQueueProcessor : IQueueProcessor
+    public sealed class BankQueueProcessor : IQueueProcessor, IQueueInformation
     {
         private readonly object _syncRoot = new object();
         private readonly Dictionary<QueueType, BankQueueCommon> _workingQueues;
@@ -32,6 +35,22 @@ namespace BankQueue.Core.QueueModel
         public int TotalCustomersCount { get { return _totalCustomersCount; } }
         public int CurrentCustomersCount { get { return _currentCustomersCount; } }
 
+        public int QueueCustomersCount(QueueType type)
+        {
+            try
+            {
+                var queue = _workingQueues[type];
+                lock (_syncRoot)
+                {
+                    return queue.Count;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("QueueCustomersCount error.", ex);
+            }
+        }
+
         public void AddCustomer(CustomerArgs args)
         {
             try
@@ -46,6 +65,7 @@ namespace BankQueue.Core.QueueModel
                 {
                     queue.AddCustomer(args);
                     _totalCustomersCount++;
+                    OnPropertyChanged(nameof(TotalCustomersCount));
                 }
             }
             catch (Exception ex)
@@ -69,6 +89,7 @@ namespace BankQueue.Core.QueueModel
                         if (queue == null)
                             throw new ApplicationException("queue == null");
                         queue.CloseAndClear();
+                        OnPropertyChanged(nameof(TotalCustomersCount));
                         _totalCustomersCount = 0;
                     }
                 }
@@ -133,8 +154,16 @@ namespace BankQueue.Core.QueueModel
             try
             {
                 Monitor.Enter(_syncRoot);
-                _totalCustomersCount--;
-                return queue.GetCustomer();
+                var cutomer = queue.GetCustomer();
+                if (cutomer != null)
+                {
+                    {
+                        _totalCustomersCount--;
+                        OnPropertyChanged(nameof(TotalCustomersCount));
+                    }
+                }
+
+                return cutomer;
             }
             catch(Exception ex)
             {
@@ -160,6 +189,14 @@ namespace BankQueue.Core.QueueModel
             {
                 throw new ApplicationException("QueueByType error.", ex);
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

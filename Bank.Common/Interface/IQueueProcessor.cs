@@ -13,11 +13,7 @@ namespace Bank.Common.Interface
     }
 
     public interface IQueueProcessor : IOperationQueue
-    {
-        int QueueCount { get; }
-        int TotalCustomersCount { get; }
-        int CurrentCustomersCount { get; }
-
+    { 
         void AddCustomer(CustomerArgs args);
         void CloseAndClearQueue(IEnumerable<QueueType> types);
         void CloseQueue(IEnumerable<QueueType> types);

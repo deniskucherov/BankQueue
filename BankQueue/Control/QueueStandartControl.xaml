@@ -17,7 +17,7 @@
         
         <TextBlock Text="Kassa" />
         <TextBlock Grid.Column="1" Text="----" />
-        <TextBlock Grid.Column="2" Text="count" />
+        <TextBlock Grid.Column="2" Text="{Binding Path=QueueLength, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueueStandartControl}}}" />
         <TextBlock Grid.Column="3" Text="stat" />
         <TextBlock Grid.Column="4" Text="Clear" />
     </Grid>

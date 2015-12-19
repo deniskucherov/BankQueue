@@ -24,5 +24,14 @@ namespace BankQueue.Control
         {
             InitializeComponent();
         }
+
+        public static readonly DependencyProperty QueueLengthProperty = DependencyProperty.Register(
+            "QueueLength", typeof (int), typeof (QueueStandartControl), new PropertyMetadata(default(int)));
+
+        public int QueueLength
+        {
+            get { return (int) GetValue(QueueLengthProperty); }
+            set { SetValue(QueueLengthProperty, value); }
+        }
     }
 }

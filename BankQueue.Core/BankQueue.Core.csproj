@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="EntranceDemon.cs" />
     <Compile Include="OperationRoomProcessor.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="QueueModel\QueueFactory.cs" />
     <Compile Include="QueueModel\BankQueueCommon.cs" />
     <Compile Include="QueueModel\BankQueueProcessor.cs" />

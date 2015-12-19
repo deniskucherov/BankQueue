@@ -46,6 +46,7 @@
     <Compile Include="Department.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Interface\IOperationProcessor.cs" />
+    <Compile Include="Interface\IQueueInformation.cs" />
     <Compile Include="Interface\IWorkPlace.cs" />
     <Compile Include="Interface\IQueueProcessor.cs" />
     <Compile Include="Interface\ICustomerSource.cs" />

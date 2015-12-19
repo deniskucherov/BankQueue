@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using Bank.Common;
 using Bank.Common.Interface;
@@ -9,10 +10,11 @@ namespace BankQueue.Core
     public sealed class EntranceDemon : IEntranceDemon, ICustomerSource
     {
         private readonly Timer _timer;
+        private readonly Random _rand = new Random(1);
 
         public EntranceDemon()
         {
-            _timer = new Timer(Callback, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            _timer = new Timer(Callback, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
         }
 
         public IEntranceInformation Information { get; }
@@ -32,7 +34,10 @@ namespace BankQueue.Core
         {
             var customer = new Customer("Customer " + DateTime.Now.Millisecond.ToString(), 25, Gender.M);
 
-            var args = new CustomerArgs(customer, QueueType.Operational, new Payload());
+            var departments = new List<QueueType> {QueueType.Cashire, QueueType.Credit, QueueType.Operational};
+            var type = departments[_rand.Next(0, 3)];
+            var args = new CustomerArgs(customer, type, new Payload());
+
             CustomerArrivedEvent(this, args);
         }
 
