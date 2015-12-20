@@ -45,8 +45,10 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Gender.cs" />
+    <Compile Include="Interface\IOfficer.cs" />
     <Compile Include="Interface\IOperationProcessor.cs" />
     <Compile Include="Interface\IQueueInformation.cs" />
+    <Compile Include="Interface\IStampProvider.cs" />
     <Compile Include="Interface\IWorkPlace.cs" />
     <Compile Include="Interface\IQueueProcessor.cs" />
     <Compile Include="Interface\ICustomerSource.cs" />
@@ -60,7 +62,9 @@
     <Compile Include="QueueState.cs" />
     <Compile Include="QueueType.cs" />
     <Compile Include="Value\CustomerArgs.cs" />
+    <Compile Include="Value\OfficerId.cs" />
     <Compile Include="Value\Payload.cs" />
+    <Compile Include="Value\Stamp.cs" />
     <Compile Include="Workplace.cs" />
     <Compile Include="WorkState.cs" />
   </ItemGroup>

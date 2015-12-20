@@ -57,6 +57,7 @@ namespace BankQueue
 
             Container.RegisterType<IEntranceDemon, EntranceDemon>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IOperationProcessor, OperationRoomProcessor>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IStampProvider, CashierDesk>(new ContainerControlledLifetimeManager());
         }
     }
 }

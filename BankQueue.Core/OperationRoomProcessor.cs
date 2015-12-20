@@ -12,19 +12,22 @@ namespace BankQueue.Core
     {
         private readonly object _syncRoot = new object();
         private readonly IOperationQueue _operationQueue;
+        private readonly IStampProvider _stampProvider;
         private readonly List<WorkProcess> _processes;
 
-        public OperationRoomProcessor(IOperationQueue operationQueue)
+        public OperationRoomProcessor(IOperationQueue operationQueue, IStampProvider stampProvider)
         {
             if (operationQueue == null) throw new ArgumentNullException(nameof(operationQueue));
+            if (stampProvider == null) throw new ArgumentNullException(nameof(stampProvider));
 
             _operationQueue = operationQueue;
+            _stampProvider = stampProvider;
             _processes = new List<WorkProcess>();
         }
 
         public IWorkProcess StartWorkplaceProccess(IWorkPlace workplace)
         {
-            var process = new WorkProcess(workplace, _operationQueue);
+            var process = new WorkProcess(workplace, _operationQueue, _stampProvider);
             _processes.Add(process);
             process.Start();
 

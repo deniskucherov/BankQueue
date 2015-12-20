@@ -6,6 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Bank.Common;
 using Bank.Common.Interface;
+using Bank.Common.Value;
+using BankQueue.Core.Annotations;
 
 namespace BankQueue.Core
 {
@@ -17,14 +19,17 @@ namespace BankQueue.Core
         private readonly Timer _timer;
 
         private readonly IOperationQueue _operationQueue;
+        private readonly IStampProvider _stampProvider;
 
-        public WorkProcess(IWorkPlace workplace, IOperationQueue operationQueue)
+        public WorkProcess(IWorkPlace workplace, IOperationQueue operationQueue, [NotNull] IStampProvider stampProvider)
         {
             if (workplace == null) throw new ArgumentNullException(nameof(workplace));
             if (operationQueue == null) throw new ArgumentNullException(nameof(operationQueue));
+            if (stampProvider == null) throw new ArgumentNullException(nameof(stampProvider));
 
             _workplace = workplace;
             _operationQueue = operationQueue;
+            _stampProvider = stampProvider;
             State = WorkState.Stoped;
             _timer = new Timer(TimerCallback, null, Timeout.Infinite, Timeout.Infinite);
         }
@@ -73,7 +78,11 @@ namespace BankQueue.Core
             var customerArgs = _operationQueue.GetNextCustomer(_workplace.QueueType);
             var officer = _workplace.GetNextOfficer();
 
-            Thread.Sleep(500);
+            Thread.Sleep(2000);
+
+            var  stamp = _stampProvider.GetStamp(officer);
+            Thread.Sleep(1000);
+            _stampProvider.ReturnStamp(officer);
         }
 
 

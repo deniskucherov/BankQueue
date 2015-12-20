@@ -14,7 +14,7 @@ namespace BankQueue.Core
 
         public EntranceDemon()
         {
-            _timer = new Timer(Callback, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
+            _timer = new Timer(Callback, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
         }
 
         public IEntranceInformation Information { get; }
