@@ -7,19 +7,23 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Bank.Common;
 using Bank.Common.Interface;
+using Bank.Common.Value;
+using BankQueue.DomainEvents;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Commands;
+using Prism.Events;
 
 namespace BankQueue.ViewModel
 {
     public sealed class DepartmentViewModel : CommonViewModel
     {
         private readonly IOperationProcessor _operationProcessor;
+        private readonly IEventAggregator _eventAggregator;
 
         private ICommand _addWorkPlace, _deleteWorkPlace;
         private ICommand _startWork, _pauseWork, _stopWork;
 
-        private int _workPlaceId;
+        private int _workPlaceId = 1;
 
         public DepartmentViewModel(Department department)
         {
@@ -31,17 +35,24 @@ namespace BankQueue.ViewModel
                 _operationProcessor = ServiceLocator.Current.TryResolve<IOperationProcessor>();
                 if (_operationProcessor == null)
                     throw new ApplicationException("_operationProcessor == null");
+                _eventAggregator = ServiceLocator.Current.TryResolve<IEventAggregator>();
+                if (_eventAggregator == null)
+                    throw new ApplicationException("_eventAggregator == null");
             }
             
             Department = department;
             Workplaces = new ObservableCollection<Workplace>();
+            _operationProcessor.ProcessCompleted += OnProcessCompleted;
         }
-
-        public DepartmentViewModel(Department department, IOperationProcessor operationProcessor) : this(department)
+       
+        public DepartmentViewModel(Department department, IOperationProcessor operationProcessor, IEventAggregator eventAggregator) 
+            : this(department)
         {
             if (operationProcessor == null) throw new ArgumentNullException(nameof(operationProcessor));
+            if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
 
             _operationProcessor = operationProcessor;
+            _eventAggregator = eventAggregator;
         }
 
         public Department Department { get; private set; }
@@ -111,5 +122,10 @@ namespace BankQueue.ViewModel
             OnPropertyChanged(()=>SelectedWorkPlace);
         }
 
+        private void OnProcessCompleted(object sender, CustomerArgs args)
+        {
+            if (args == null) throw new ArgumentNullException(nameof(args));
+            _eventAggregator.GetEvent<CustomerServedEvent>().Publish(args);
+        }
     }
 }

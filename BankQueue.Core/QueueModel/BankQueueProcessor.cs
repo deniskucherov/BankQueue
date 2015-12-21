@@ -6,7 +6,6 @@ using System.Threading;
 using Bank.Common;
 using Bank.Common.Interface;
 using Bank.Common.Value;
-using BankQueue.Core.Annotations;
 
 namespace BankQueue.Core.QueueModel
 {
@@ -65,13 +64,45 @@ namespace BankQueue.Core.QueueModel
                 {
                     queue.AddCustomer(args);
                     _totalCustomersCount++;
-                    OnPropertyChanged(nameof(TotalCustomersCount));
+                    _currentCustomersCount++;
                 }
             }
             catch (Exception ex)
             {
                 throw new ApplicationException("AddCustomer error.", ex);
             }
+        }
+
+        public void ClearQueue(IEnumerable<QueueType> types)
+        {
+            try
+            {
+                if (types == null)
+                    throw new ArgumentNullException(nameof(types));
+
+                lock (_syncRoot)
+                {
+                    foreach (var t in types)
+                    {
+                        var queue = _workingQueues[t];
+                        if (queue == null)
+                            throw new ApplicationException("queue == null");
+                        
+                        _currentCustomersCount -= queue.Count;
+                        _totalCustomersCount -= queue.Count;
+                        queue.Clear();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("ClearQueue", ex);
+            }
+        }
+
+        public void ClearQueue(QueueType type)
+        {
+            ClearQueue(new List<QueueType>(1) {type});
         }
 
         public void CloseAndClearQueue(IEnumerable<QueueType> types)
@@ -89,8 +120,8 @@ namespace BankQueue.Core.QueueModel
                         if (queue == null)
                             throw new ApplicationException("queue == null");
                         queue.CloseAndClear();
-                        OnPropertyChanged(nameof(TotalCustomersCount));
                         _totalCustomersCount = 0;
+                        _currentCustomersCount = 0;
                     }
                 }
             }
@@ -158,8 +189,7 @@ namespace BankQueue.Core.QueueModel
                 if (cutomer != null)
                 {
                     {
-                        _totalCustomersCount--;
-                        OnPropertyChanged(nameof(TotalCustomersCount));
+                        _currentCustomersCount--;
                     }
                 }
 
@@ -189,14 +219,6 @@ namespace BankQueue.Core.QueueModel
             {
                 throw new ApplicationException("QueueByType error.", ex);
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

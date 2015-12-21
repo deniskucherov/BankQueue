@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bank.Common;
+using BankQueue.Core.Annotations;
+using BankQueue.ViewModel;
 
 namespace BankQueue.Control
 {
@@ -25,13 +28,32 @@ namespace BankQueue.Control
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty QueueLengthProperty = DependencyProperty.Register(
-            "QueueLength", typeof (int), typeof (QueueStandartControl), new PropertyMetadata(default(int)));
+        public static readonly DependencyProperty QueueTypeProperty = DependencyProperty.Register(
+            "QueueType", typeof (QueueType), typeof (QueueStandartControl), new PropertyMetadata(default(QueueType), QueueTypeChangedCallback));
 
-        public int QueueLength
+        public static readonly DependencyProperty QueueNameProperty = DependencyProperty.Register(
+            "QueueName", typeof (string), typeof (QueueStandartControl), new PropertyMetadata(default(string)));
+
+        public string QueueName
         {
-            get { return (int) GetValue(QueueLengthProperty); }
-            set { SetValue(QueueLengthProperty, value); }
+            get { return (string) GetValue(QueueNameProperty); }
+            set { SetValue(QueueNameProperty, value); }
+        }
+
+        public QueueType QueueType
+        {
+            get { return (QueueType) GetValue(QueueTypeProperty); }
+            set { SetValue(QueueTypeProperty, value); }
+        }
+
+        private static void QueueTypeChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+        {
+            var control = dependencyObject as QueueStandartControl;
+
+            var vm = new QueueControlViewModel();
+            vm.QueueType = (QueueType)args.NewValue;
+            control.DataContext = vm;
+            control.QueueName = args.NewValue.ToString();
         }
     }
 }

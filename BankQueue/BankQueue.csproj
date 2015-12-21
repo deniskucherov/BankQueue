@@ -87,13 +87,23 @@
     <Compile Include="Control\DepartmentControl.xaml.cs">
       <DependentUpon>DepartmentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\QueueItem.xaml.cs">
+      <DependentUpon>QueueItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\QueueStandartControl.xaml.cs">
       <DependentUpon>QueueStandartControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\QueueStat.xaml.cs">
+      <DependentUpon>QueueStat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\WorkplaceStandartControl.xaml.cs">
       <DependentUpon>WorkplaceStandartControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\GenderToColorConverter.cs" />
+    <Compile Include="DomainEvents\ClearQueueEvent.cs" />
     <Compile Include="DomainEvents\CustomerArrivedEvent.cs" />
+    <Compile Include="DomainEvents\CustomerServedEvent.cs" />
+    <Compile Include="DomainEvents\RoomMonitorSyncEvent.cs" />
     <Compile Include="Model\CustomerParser.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\CashDeskViewModel.cs" />
@@ -102,6 +112,7 @@
     <Compile Include="ViewModel\DepartmentViewModel.cs" />
     <Compile Include="ViewModel\EntranceViewModel.cs" />
     <Compile Include="ViewModel\OperatingRoomViewModel.cs" />
+    <Compile Include="ViewModel\QueueStatViewModel.cs" />
     <Compile Include="ViewModel\QueueViewModel.cs" />
     <Compile Include="View\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
@@ -118,6 +129,7 @@
     <Compile Include="View\OperatingRoomView.xaml.cs">
       <DependentUpon>OperatingRoomView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\QueueControlViewModel.cs" />
     <Compile Include="View\QueueView.xaml.cs">
       <DependentUpon>QueueView.xaml</DependentUpon>
     </Compile>
@@ -131,7 +143,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Control\QueueItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Control\QueueStandartControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\QueueStat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,14 +20,12 @@ namespace BankQueue.Core
         
         public CashierDesk()
         {
-            var stampsCount = 10;
-            _stampSemaphore = new Semaphore(stampsCount, stampsCount);
-            _stamps = Enumerable.Range(0, stampsCount).Select(x => new CashierStampRecord(new Stamp(string.Format("Stamp #{0}", x + 1)))).ToList();
-            StampsCount = stampsCount;
-            _stampsRemains = stampsCount;
+            _stampSemaphore = new Semaphore(StampsCount, StampsCount);
+            _stamps = Enumerable.Range(0, StampsCount).Select(x => new CashierStampRecord(new Stamp(string.Format("Stamp #{0}", x + 1)))).ToList();
+            _stampsRemains = StampsCount;
         }
 
-        public int StampsCount { get; private set; }
+        public int StampsCount { get { return 10; } }
 
         public int StampsRemains
         {

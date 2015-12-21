@@ -34,13 +34,15 @@ namespace BankQueue.Core
             _timer = new Timer(TimerCallback, null, Timeout.Infinite, Timeout.Infinite);
         }
 
+        public event EventHandler<CustomerArgs> ProcessCompleted = delegate { };
+
         public Guid ProcessId { get { return _id; } }
         public WorkState State { get; private set; }     
 
         public void Start()
         {
             State = WorkState.InWork;
-            _timer.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            _timer.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
         }
 
         public void Stop()
@@ -76,15 +78,18 @@ namespace BankQueue.Core
         private void WorkWithCustomer()
         {
             var customerArgs = _operationQueue.GetNextCustomer(_workplace.QueueType);
+            if (customerArgs == null) return;
+
             var officer = _workplace.GetNextOfficer();
 
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
 
-            var  stamp = _stampProvider.GetStamp(officer);
-            Thread.Sleep(1000);
-            _stampProvider.ReturnStamp(officer);
+          //  var  stamp = _stampProvider.GetStamp(officer);
+           /// Thread.Sleep(1000);
+          //  _stampProvider.ReturnStamp(officer);
+
+            ProcessCompleted(this, customerArgs);
         }
-
 
     }
 }

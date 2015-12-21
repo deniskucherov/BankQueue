@@ -32,7 +32,8 @@ namespace BankQueue.Core
 
         private void Callback(object state)
         {
-            var customer = new Customer("Customer " + DateTime.Now.Millisecond.ToString(), 25, Gender.M);
+            var gender = _rand.Next()%2 == 0 ? Gender.M : Gender.F;
+            var customer = new Customer("Customer " + DateTime.Now.Millisecond.ToString(), 25, gender);
 
             var departments = new List<QueueType> {QueueType.Cashire, QueueType.Credit, QueueType.Operational};
             var type = departments[_rand.Next(0, 3)];

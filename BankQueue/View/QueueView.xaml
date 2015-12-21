@@ -7,22 +7,24 @@
              xmlns:control="clr-namespace:BankQueue.Control"
              xmlns:viewModel="clr-namespace:BankQueue.ViewModel"
              d:DataContext="{d:DesignInstance viewModel:QueueViewModel}"
-             mc:Ignorable="d" Height="100" d:DesignWidth="300">
+             mc:Ignorable="d" d:DesignWidth="300">
     <GroupBox Header="Queue">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <control:QueueStandartControl QueueLength="{Binding CashireQueueCustomers, Mode=OneWay}" />
-            <control:QueueStandartControl QueueLength="{Binding CredtiQueueCustomers, Mode=OneWay}" Grid.Row="1" />
-            <control:QueueStandartControl QueueLength="{Binding OperationalQueueCustomers, Mode=OneWay}" Grid.Row="2" />
+            <control:QueueStandartControl QueueType="Operational" />
+            <control:QueueStandartControl QueueType="Credit" Grid.Row="1" />
+            <control:QueueStandartControl QueueType="Cashire" Grid.Row="2" />
             
             <StackPanel Grid.Row="3" Orientation="Horizontal">
-                <TextBlock Text="{Binding TotalCustomers, Mode=OneWay}" />
+                <TextBlock Text="{Binding TotalCustomers, Mode=OneWay, StringFormat=Total: {0}}" />
+                <TextBlock Text="{Binding CurrentCustomers, Mode=OneWay, StringFormat=Current: {0}}" />
+                <TextBlock Text="{Binding Served, Mode=OneWay, StringFormat=Served: {0}}" />
             </StackPanel>
         </Grid>
     </GroupBox>

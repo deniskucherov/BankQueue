@@ -4,21 +4,60 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankQueue.Control"
-             mc:Ignorable="d" >
+             xmlns:viewModel="clr-namespace:BankQueue.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:converters="clr-namespace:BankQueue.Converters"
+             d:DataContext="{d:DesignInstance viewModel:QueueControlViewModel}"
+             mc:Ignorable="d" Height="30" >
+   <UserControl.Resources>
+       <converters:GenderToColorConverter x:Key="GenderColorConverter" />
+        <Style x:Key="ButtonTextStype" TargetType="{x:Type TextBlock}">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="TextDecorations" Value="Underline" />
+            <Setter Property="Margin" Value="5,0,5,0" />
+        </Style>
+    </UserControl.Resources>
     
-    <Grid Margin="3" Background="Silver">
+    <Grid Margin="3" Background="WhiteSmoke">
          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="0.3*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>  
         
-        <TextBlock Text="Kassa" />
-        <TextBlock Grid.Column="1" Text="----" />
-        <TextBlock Grid.Column="2" Text="{Binding Path=QueueLength, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueueStandartControl}}}" />
-        <TextBlock Grid.Column="3" Text="stat" />
-        <TextBlock Grid.Column="4" Text="Clear" />
+        <TextBlock Margin="3,0,10,0"
+            Text="{Binding Path=QueueName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueueStandartControl}}}" />
+        <ListBox Grid.Column="1" SelectionMode="Single" IsEnabled="False" Background="Transparent" BorderThickness="0"
+                 ItemsSource="{Binding Customers, Mode=OneTime}">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <ItemsPresenter />
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <local:QueueItem ItemColor="{Binding Customer.Sex, Mode=OneWay, Converter={StaticResource GenderColorConverter}}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Border Grid.Column="2" Margin="3,0,5,2" Padding="1" BorderThickness="0" Background="Orange" CornerRadius="5" VerticalAlignment="Center">
+            <TextBlock Grid.Column="2" Margin="5,0,5,0" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CustomersCount, Mode=OneWay}" />
+        </Border>
+        
+        <TextBlock Grid.Column="3" Text="stat" Style="{StaticResource ButtonTextStype}" />
+        <TextBlock Grid.Column="4" Text="Clear" Style="{StaticResource ButtonTextStype}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding ClearQueueCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBlock>
     </Grid>
 </UserControl>

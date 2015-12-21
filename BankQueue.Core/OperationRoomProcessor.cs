@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bank.Common;
 using Bank.Common.Interface;
+using Bank.Common.Value;
 
 namespace BankQueue.Core
 {
@@ -25,9 +26,12 @@ namespace BankQueue.Core
             _processes = new List<WorkProcess>();
         }
 
+        public event EventHandler<CustomerArgs> ProcessCompleted = delegate { };
+
         public IWorkProcess StartWorkplaceProccess(IWorkPlace workplace)
         {
             var process = new WorkProcess(workplace, _operationQueue, _stampProvider);
+            process.ProcessCompleted += (sender, args) => { ProcessCompleted(sender, args); };
             _processes.Add(process);
             process.Start();
 

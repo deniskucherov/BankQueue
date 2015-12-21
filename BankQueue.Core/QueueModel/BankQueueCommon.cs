@@ -52,5 +52,10 @@ namespace BankQueue.Core.QueueModel
             _customersQueue.Clear();
         }
 
+        public virtual void Clear()
+        {
+            _customersQueue.Clear();
+        }
+
     }
 }
