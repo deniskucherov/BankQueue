@@ -8,6 +8,13 @@
              xmlns:viewModel="clr-namespace:BankQueue.ViewModel"
              d:DataContext="{d:DesignInstance viewModel:QueueViewModel}"
              mc:Ignorable="d" d:DesignWidth="300">
+   
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}" x:Key="SummaryStyle">
+            <Setter Property="Margin" Value="3,1,3,1" />
+        </Style>
+    </UserControl.Resources>
+   
     <GroupBox Header="Queue">
         <Grid>
             <Grid.RowDefinitions>
@@ -22,9 +29,9 @@
             <control:QueueStandartControl QueueType="Cashire" Grid.Row="2" />
             
             <StackPanel Grid.Row="3" Orientation="Horizontal">
-                <TextBlock Text="{Binding TotalCustomers, Mode=OneWay, StringFormat=Total: {0}}" />
-                <TextBlock Text="{Binding CurrentCustomers, Mode=OneWay, StringFormat=Current: {0}}" />
-                <TextBlock Text="{Binding Served, Mode=OneWay, StringFormat=Served: {0}}" />
+                <TextBlock Style="{StaticResource SummaryStyle}" Text="{Binding TotalCustomersInQueue, Mode=OneWay, StringFormat=Total: {0}}" />
+                <TextBlock Style="{StaticResource SummaryStyle}" Text="{Binding TotalCustomersInOperationgRoom, Mode=OneWay, StringFormat=Total in operation room: {0}}" />
+                <TextBlock Style="{StaticResource SummaryStyle}" Text="{Binding TotalServed, Mode=OneWay, StringFormat=Served: {0}}" />
             </StackPanel>
         </Grid>
     </GroupBox>

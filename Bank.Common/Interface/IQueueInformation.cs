@@ -10,7 +10,6 @@ namespace Bank.Common.Interface
     {
         int QueueCount { get; }
         int TotalCustomersCount { get; }
-        int CurrentCustomersCount { get; }
 
         int QueueCustomersCount(QueueType type);
     }

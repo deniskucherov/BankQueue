@@ -14,7 +14,6 @@ namespace BankQueue.Core.QueueModel
         private readonly object _syncRoot = new object();
         private readonly Dictionary<QueueType, BankQueueCommon> _workingQueues;
         private int _totalCustomersCount;
-        private int _currentCustomersCount;
 
         public BankQueueProcessor(QueueFactory factory)
         {
@@ -32,7 +31,6 @@ namespace BankQueue.Core.QueueModel
         }
 
         public int TotalCustomersCount { get { return _totalCustomersCount; } }
-        public int CurrentCustomersCount { get { return _currentCustomersCount; } }
 
         public int QueueCustomersCount(QueueType type)
         {
@@ -64,7 +62,6 @@ namespace BankQueue.Core.QueueModel
                 {
                     queue.AddCustomer(args);
                     _totalCustomersCount++;
-                    _currentCustomersCount++;
                 }
             }
             catch (Exception ex)
@@ -88,7 +85,6 @@ namespace BankQueue.Core.QueueModel
                         if (queue == null)
                             throw new ApplicationException("queue == null");
                         
-                        _currentCustomersCount -= queue.Count;
                         _totalCustomersCount -= queue.Count;
                         queue.Clear();
                     }
@@ -121,7 +117,6 @@ namespace BankQueue.Core.QueueModel
                             throw new ApplicationException("queue == null");
                         queue.CloseAndClear();
                         _totalCustomersCount = 0;
-                        _currentCustomersCount = 0;
                     }
                 }
             }
@@ -189,7 +184,7 @@ namespace BankQueue.Core.QueueModel
                 if (cutomer != null)
                 {
                     {
-                        _currentCustomersCount--;
+                        _totalCustomersCount--;
                     }
                 }
 

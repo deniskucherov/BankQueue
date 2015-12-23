@@ -20,8 +20,7 @@ namespace BankQueue.ViewModel
         private readonly System.Timers.Timer _timer;
         private readonly IQueueProcessor _queueProcessor;
         private readonly IQueueInformation _queueInformation;
-        private readonly RoomMonitorSyncEvent _syncEvent;
-       
+        private readonly RoomMonitorSyncEvent _syncEvent;   
 
         public QueueViewModel(IEventAggregator eventAggregator)
         {
@@ -47,9 +46,9 @@ namespace BankQueue.ViewModel
             eventAggregator.GetEvent<ClearQueueEvent>().Subscribe(OnClearQueueEvent);
         }
 
-        public int TotalCustomers { get { return _queueInformation.TotalCustomersCount; } }
-        public int CurrentCustomers { get {return _queueInformation.CurrentCustomersCount; } }
-        public int Served { get { return TotalCustomers - CurrentCustomers; } }   
+        public int TotalCustomersInQueue { get { return _queueInformation.TotalCustomersCount; } }
+        public int TotalCustomersInOperationgRoom { get {return 0; } }
+        public int TotalServed { get { return 0; } }   
 
         private void OnCustomerArrived(CustomerArgs args)
         {
