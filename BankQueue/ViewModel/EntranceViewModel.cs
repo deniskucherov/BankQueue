@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Bank.Common;
 using Bank.Common.Interface;
 using BankQueue.DomainEvents;
+using Prism.Commands;
 using Prism.Events;
 
 namespace BankQueue.ViewModel
@@ -13,6 +14,7 @@ namespace BankQueue.ViewModel
     public sealed class EntranceViewModel : CommonServiceViewModel
     {
         private readonly IEntranceDemon _entranceDemon;
+        private readonly ICustomerGenerator _customerGenerator;
 
         public EntranceViewModel(IEntranceDemon entranceDemon, IEventAggregator eventAggregator)
         {
@@ -20,22 +22,30 @@ namespace BankQueue.ViewModel
 
             _entranceDemon = entranceDemon;
 
-            var customerSource = entranceDemon as ICustomerSource;
-            if (customerSource != null)
+            _customerGenerator = entranceDemon as ICustomerGenerator;
+            if (_customerGenerator != null)
             {
-                customerSource.CustomerArrivedEvent += (sender, args) => 
+                _customerGenerator.CustomerArrivedEvent += (sender, args) => 
                 { eventAggregator.GetEvent<CustomerArrivedEvent>().Publish(args); };
+                
+                _customerGenerator.GeneratorStopedEvent += (sender, args) =>
+                {
+                    base.ExecuteStopCommad();
+                };
             }
         }
 
+
         protected override void ExecuteStartCommand()
         {
-            _entranceDemon.Start();
+            _customerGenerator.Start();
+            base.ExecuteStartCommand();
         }
 
         protected override void ExecuteStopCommad()
         {
-            _entranceDemon.Stop();
+            _customerGenerator.Stop();
+            base.ExecuteStopCommad();
         }
     }
 }

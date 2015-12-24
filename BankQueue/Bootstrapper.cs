@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Bank.Common;
 using Bank.Common.Interface;
 using BankQueue.Core;
 using BankQueue.Core.QueueModel;
+using BankQueue.Model;
 using BankQueue.View;
 using BankStatistic.Module;
 using Microsoft.Practices.Unity;
@@ -21,8 +23,39 @@ namespace BankQueue
     {
         protected override void InitializeShell()
         {
-            Application.Current.MainWindow = (Window) Shell;
+            var wnd = (Window) Shell;
+            wnd.Closing += WndOnClosing;
+            Application.Current.MainWindow = wnd;
             Application.Current.MainWindow.Show();
+        }
+
+        private void WndOnClosing(object sender, CancelEventArgs cancelEventArgs)
+        {
+            try
+            {
+                var admin = Container.Resolve<IAdministrator>();
+                var generator = Container.Resolve<ICustomerGenerator>();
+                generator.Stop();
+
+                var queueInformation = Container.Resolve<IQueueInformation>();
+
+                if (queueInformation.TotalCustomersCount > 0)
+                {
+                    if (
+                        MessageBox.Show("Wait till there are still any customers in a bank?", "Bye...",
+                            MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+                    {
+                        cancelEventArgs.Cancel = true;
+                        return;
+                    }
+                }
+
+                admin.CloseOffice();
+            }
+            catch
+            {
+
+            }
         }
 
         protected override DependencyObject CreateShell()
@@ -54,10 +87,16 @@ namespace BankQueue
             var queueProcessor = Container.Resolve<BankQueueProcessor>();
             Container.RegisterInstance(typeof (IQueueProcessor), queueProcessor);
             Container.RegisterInstance(typeof (IOperationQueue), queueProcessor);
+            Container.RegisterInstance(typeof (IQueueInformation), queueProcessor);
 
             Container.RegisterType<IEntranceDemon, EntranceDemon>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<ICustomerGenerator, EntranceDemon>(new ContainerControlledLifetimeManager());
+
             Container.RegisterType<IOperationProcessor, OperationRoomProcessor>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IStampProvider, CashierDesk>(new ContainerControlledLifetimeManager());
+                 
+            Container.RegisterType<IAdministrator, BankAdministrator>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IOfficeInformation, BankAdministrator>(new ContainerControlledLifetimeManager());
         }
     }
 }

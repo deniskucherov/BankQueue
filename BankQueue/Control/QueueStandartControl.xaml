@@ -11,7 +11,8 @@
              mc:Ignorable="d" Height="30" >
    <UserControl.Resources>
        <converters:GenderToColorConverter x:Key="GenderColorConverter" />
-        <Style x:Key="ButtonTextStype" TargetType="{x:Type TextBlock}">
+       <converters:AgeGroupToQueueItemHeightConverter x:Key="AgeGroupHeigthConverter" /> 
+       <Style x:Key="ButtonTextStype" TargetType="{x:Type TextBlock}">
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="TextDecorations" Value="Underline" />
             <Setter Property="Margin" Value="5,0,5,0" />
@@ -20,7 +21,7 @@
     
     <Grid Margin="3" Background="WhiteSmoke">
          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="0.3*" MaxWidth="150" MinWidth="100" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
@@ -30,7 +31,7 @@
         <TextBlock Margin="3,0,10,0"
             Text="{Binding Path=QueueName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueueStandartControl}}}" />
         <ListBox Grid.Column="1" SelectionMode="Single" IsEnabled="False" Background="Transparent" BorderThickness="0"
-                 ItemsSource="{Binding Customers, Mode=OneTime}">
+                 ItemsSource="{Binding Customers, Mode=OneTime}" VerticalContentAlignment="Bottom">
             <ListBox.Template>
                 <ControlTemplate>
                     <ItemsPresenter />
@@ -43,12 +44,14 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <local:QueueItem ItemColor="{Binding Customer.Sex, Mode=OneWay, Converter={StaticResource GenderColorConverter}}" />
+                    <local:QueueItem ToolTip="hello"
+                        ItemHeight="{Binding Customer.Age.AgeGroup, Converter={StaticResource AgeGroupHeigthConverter}}"
+                        ItemColor="{Binding Customer.Sex, Mode=OneWay, Converter={StaticResource GenderColorConverter}}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Border Grid.Column="2" Margin="3,0,5,2" Padding="1" BorderThickness="0" Background="Orange" CornerRadius="5" VerticalAlignment="Center">
-            <TextBlock Grid.Column="2" Margin="5,0,5,0" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CustomersCount, Mode=OneWay}" />
+            <TextBlock Margin="5,0,5,0" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding CustomersCount, Mode=OneWay}" />
         </Border>
         
         <TextBlock Grid.Column="3" Text="stat" Style="{StaticResource ButtonTextStype}" />

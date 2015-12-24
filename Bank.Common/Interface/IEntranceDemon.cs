@@ -2,8 +2,6 @@
 {
     public interface IEntranceDemon
     {
-        void Start();
-        void Stop();
         IEntranceInformation Information { get; }
     }
 }

@@ -34,7 +34,18 @@ namespace BankQueue.ViewModel
             return !IsStarted;
         }
 
-        protected abstract void ExecuteStopCommad();
-        protected abstract void ExecuteStartCommand();
+        protected virtual void ExecuteStopCommad()
+        {
+            IsStarted = false;
+            ((DelegateCommand)StartCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)StopCommand).RaiseCanExecuteChanged();
+        }
+
+        protected virtual void ExecuteStartCommand()
+        {
+            IsStarted = true;
+            ((DelegateCommand)StopCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)StartCommand).RaiseCanExecuteChanged();
+        }
     }
 }

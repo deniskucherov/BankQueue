@@ -99,11 +99,14 @@
     <Compile Include="Control\WorkplaceStandartControl.xaml.cs">
       <DependentUpon>WorkplaceStandartControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AgeGroupToQueueItemHeightConverter.cs" />
     <Compile Include="Converters\GenderToColorConverter.cs" />
     <Compile Include="DomainEvents\ClearQueueEvent.cs" />
     <Compile Include="DomainEvents\CustomerArrivedEvent.cs" />
+    <Compile Include="DomainEvents\CustomerRejectedEvent.cs" />
     <Compile Include="DomainEvents\CustomerServedEvent.cs" />
     <Compile Include="DomainEvents\RoomMonitorSyncEvent.cs" />
+    <Compile Include="Model\BankAdministrator.cs" />
     <Compile Include="Model\CustomerParser.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\CashDeskViewModel.cs" />

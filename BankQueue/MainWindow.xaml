@@ -27,7 +27,7 @@
         <GroupBox Header="Administration" Padding="3">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" MaxWidth="150" MinWidth="70" />
+                    <ColumnDefinition Width="Auto" MinWidth="100" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -36,7 +36,7 @@
                 <ContentControl prism:RegionManager.RegionName="Admin" />
                 <ContentControl Grid.Column="1" prism:RegionManager.RegionName="DataService" />
                 <ContentControl Grid.Column="2" prism:RegionManager.RegionName="ReportService" />
-                <ContentControl Grid.Column="2" prism:RegionManager.RegionName="Entrance" />
+                <ContentControl Grid.Column="3" prism:RegionManager.RegionName="Entrance" />
             </Grid>
 
         </GroupBox>

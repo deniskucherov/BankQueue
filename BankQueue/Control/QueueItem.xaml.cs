@@ -33,5 +33,14 @@ namespace BankQueue.Control
             get { return (Brush) GetValue(ItemColorProperty); }
             set { SetValue(ItemColorProperty, value); }
         }
+
+        public static readonly DependencyProperty ItemHeightProperty = DependencyProperty.Register(
+            "ItemHeight", typeof (int), typeof (QueueItem), new PropertyMetadata(default(int)));
+
+        public int ItemHeight
+        {
+            get { return (int) GetValue(ItemHeightProperty); }
+            set { SetValue(ItemHeightProperty, value); }
+        }
     }
 }
