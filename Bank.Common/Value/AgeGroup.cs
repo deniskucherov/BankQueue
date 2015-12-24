@@ -15,6 +15,7 @@ namespace Bank.Common.Value
 
         public int Age { get; private set; }
 
+        public abstract string GroupName { get; }
         public abstract double AgeFactor();
 
         public static AgeGroup Create(int age)
@@ -61,6 +62,11 @@ namespace Bank.Common.Value
         {
         }
 
+        public override string GroupName
+        {
+            get { return "A (16-25)"; }
+        }
+
         public override double AgeFactor()
         {
             return 0.2;
@@ -76,6 +82,10 @@ namespace Bank.Common.Value
         {
         }
 
+        public override string GroupName
+        {
+            get { return "B (26-35)"; }
+        }
         public override double AgeFactor()
         {
             return 0.4;
@@ -89,6 +99,11 @@ namespace Bank.Common.Value
     {
         public AgeGroupC(int age) : base(age)
         {
+        }
+
+        public override string GroupName
+        {
+            get { return "C (36-45)"; }
         }
 
         public override double AgeFactor()
@@ -107,6 +122,11 @@ namespace Bank.Common.Value
 
         }
 
+        public override string GroupName
+        {
+            get { return "D (46-60)"; }
+        }
+
         public override double AgeFactor()
         {
             return 0.8;
@@ -120,6 +140,11 @@ namespace Bank.Common.Value
     {
         public AgeGroupE(int age) : base(age)
         {
+        }
+
+        public override string GroupName
+        {
+            get { return "E (61-150)"; }
         }
 
         public override double AgeFactor()

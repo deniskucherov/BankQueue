@@ -17,6 +17,10 @@
             <Setter Property="TextDecorations" Value="Underline" />
             <Setter Property="Margin" Value="5,0,5,0" />
         </Style>
+        <Style x:Key="ToolTipTitleStile" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontWeight" Value="Black" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+        </Style>
     </UserControl.Resources>
     
     <Grid Margin="3" Background="WhiteSmoke">
@@ -30,8 +34,20 @@
         
         <TextBlock Margin="3,0,10,0"
             Text="{Binding Path=QueueName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:QueueStandartControl}}}" />
-        <ListBox Grid.Column="1" SelectionMode="Single" IsEnabled="False" Background="Transparent" BorderThickness="0"
-                 ItemsSource="{Binding Customers, Mode=OneTime}" VerticalContentAlignment="Bottom">
+        <ListBox Grid.Column="1" SelectionMode="Single" Background="Transparent" BorderThickness="0"
+                 ItemsSource="{Binding Customers, Mode=OneTime}" 
+                 VerticalContentAlignment="Bottom">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True"> 
+                            <Setter Property="IsSelected" Value="True" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="BorderBrush" Value="Gray" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
             <ListBox.Template>
                 <ControlTemplate>
                     <ItemsPresenter />
@@ -44,9 +60,37 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <local:QueueItem ToolTip="hello"
-                        ItemHeight="{Binding Customer.Age.AgeGroup, Converter={StaticResource AgeGroupHeigthConverter}}"
-                        ItemColor="{Binding Customer.Sex, Mode=OneWay, Converter={StaticResource GenderColorConverter}}" />
+                    <local:QueueItem
+                        ItemHeight="{Binding Customer.Age.AgeGroup, Mode=OneTime, Converter={StaticResource AgeGroupHeigthConverter}}"
+                        ItemColor="{Binding Customer.Sex, Mode=OneTime, Converter={StaticResource GenderColorConverter}}">
+                        <local:QueueItem.ToolTip>
+                            <ToolTip>
+                                <Grid Width="350">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Style="{StaticResource ToolTipTitleStile}" Text="Customer Id:"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Id, Mode=OneTime}" />
+                                    <TextBlock Grid.Row="1" Style="{StaticResource ToolTipTitleStile}" Text="Customer Name:" />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Customer.Name, Mode=OneTime}" />
+                                    <TextBlock Grid.Row="2" Style="{StaticResource ToolTipTitleStile}" Text="Gender:" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Customer.Sex, Mode=OneTime}" />
+                                    <TextBlock Grid.Row="3" Style="{StaticResource ToolTipTitleStile}" Text="Age:" />
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Customer.Age.Value, Mode=OneTime}" />
+                                    <TextBlock Grid.Row="4" Style="{StaticResource ToolTipTitleStile}" Text="Age group:" />
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Customer.Age.AgeGroup.GroupName, Mode=OneTime}" />
+                                </Grid>
+                            </ToolTip>
+                        </local:QueueItem.ToolTip>
+                    </local:QueueItem>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

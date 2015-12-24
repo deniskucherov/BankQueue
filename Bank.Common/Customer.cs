@@ -4,14 +4,14 @@ namespace Bank.Common
 {
     public class Customer
     {
-        public Customer(string id, Age age, Gender sex)
+        public Customer(string name, Age age, Gender sex)
         {
-            Id = id;
+            Name = name;
             Age = age;
             Sex = sex;
         }
 
-        public string Id { get; private set; }
+        public string Name { get; private set; }
         public Age Age { get; private set; } 
         public Gender Sex { get; private set; }
     }

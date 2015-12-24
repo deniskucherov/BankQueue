@@ -66,7 +66,7 @@ namespace BankQueue.Core
             try
             {
                 var gender = _rand.Next() % 2 == 0 ? Gender.M : Gender.F;
-                var age = _rand.Next(16, 130);
+                var age = _rand.Next(16, 85);
                 var customerAge = new Age(age, AgeGroup.Create(age));
                 var customerName = string.Format("Customer_{0}", ++_customerId); 
                 var customer = new Customer(customerName, customerAge, gender);
