@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Bank.Common;
 
 namespace BankQueue.Control
 {
@@ -23,6 +24,24 @@ namespace BankQueue.Control
         public WorkplaceStandartControl()
         {
             InitializeComponent();
+        }
+
+        public static readonly DependencyProperty WorkplaceNameProperty = DependencyProperty.Register(
+            "WorkplaceName", typeof (string), typeof (WorkplaceStandartControl), new PropertyMetadata(default(string)));
+
+        public string WorkplaceName
+        {
+            get { return (string) GetValue(WorkplaceNameProperty); }
+            set { SetValue(WorkplaceNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty OfficerProperty = DependencyProperty.Register(
+            "Officer", typeof (Officer), typeof (WorkplaceStandartControl), new PropertyMetadata(default(Officer)));
+
+        public Officer Officer
+        {
+            get { return (Officer) GetValue(OfficerProperty); }
+            set { SetValue(OfficerProperty, value); }
         }
     }
 }

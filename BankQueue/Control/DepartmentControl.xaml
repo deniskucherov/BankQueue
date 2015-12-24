@@ -31,18 +31,16 @@
                         <StackPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="100" Height="100">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            
-                            <Label Content="{Binding Name, Mode=OneTime}" />
-                        </Grid>
+                        <local:WorkplaceStandartControl WorkplaceName="{Binding Name, Mode=OneTime}"
+                                                         Officer="{Binding CurrentOfficer, Mode=OneWay}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

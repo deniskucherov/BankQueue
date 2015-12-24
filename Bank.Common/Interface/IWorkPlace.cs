@@ -11,6 +11,8 @@ namespace Bank.Common.Interface
         string Name { get; }
         QueueType QueueType { get; }
         void AddOfficer(Officer officer);
+        Officer CurrentOfficer { get; }
+
         Officer GetNextOfficer();
     }
 }

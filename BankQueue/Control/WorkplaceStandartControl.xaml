@@ -4,9 +4,70 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankQueue.Control"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" Margin="3"
+             d:DesignHeight="150" Width="150" Background="LightGray">
+ <UserControl.Resources>
+     <Style TargetType="{x:Type Image}">
+         <Setter Property="Height" Value="24" />
+     </Style>
+     <Style TargetType="{x:Type Border}">
+         <Setter Property="BorderBrush" Value="Gray" />
+         <Setter Property="BorderThickness" Value="0,1,0,0" />
+        <Setter Property="Margin" Value="2" />
+         <Setter Property="Padding" Value="2" />
+     </Style>
+ </UserControl.Resources>
+    
     <Grid>
+         <Grid.RowDefinitions>
+             <RowDefinition Height="*" />
+             <RowDefinition Height="Auto" />
+         </Grid.RowDefinitions>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="AUto" />
+            </Grid.RowDefinitions>
             
+            <Image Source="../Img/demographic32.png" Margin="2" />
+            <StackPanel Grid.Column="1">
+                <!--<Label>raiting</Label>-->
+                <Label Content="{Binding Officer.Person.Name, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WorkplaceStandartControl}}}" />
+            </StackPanel>
+            <Image Grid.Row="2" Source="../Img/handhandshake32.png" />
+            <Label Grid.Row="2" Grid.Column="1" Content="Status..." />
+            
+            <Border Grid.Row="3" Grid.ColumnSpan="2">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <Label Content="customer" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1">
+                        <Image Source="../Img/bag32.png" />
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+            
+        </Grid>
+        
+        <Border Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Content="Add officer" />
+            </StackPanel>
+        </Border>
+       
     </Grid>
 </UserControl>
