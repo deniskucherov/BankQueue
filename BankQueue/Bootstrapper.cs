@@ -68,8 +68,9 @@ namespace BankQueue
             regionManager.RegisterViewWithRegion(ApplicationRegion.Entrance.ToString(), typeof (EntranceView));
             regionManager.RegisterViewWithRegion(ApplicationRegion.Queue.ToString(), typeof(QueueView));
             regionManager.RegisterViewWithRegion(ApplicationRegion.OperationRoom.ToString(), typeof (OperatingRoomView));
-            regionManager.RegisterViewWithRegion(ApplicationRegion.Safe.ToString(), typeof (SafeView));
+            regionManager.RegisterViewWithRegion(ApplicationRegion.Seif.ToString(), typeof (SeifView));
             regionManager.RegisterViewWithRegion(ApplicationRegion.CashDesk.ToString(), typeof (CashDeskView));
+            regionManager.RegisterViewWithRegion(ApplicationRegion.Statistic.ToString(), typeof (StatisticView));
             return new MainWindow();
         }
 

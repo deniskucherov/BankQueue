@@ -15,7 +15,7 @@ namespace Bank.Common
         Entrance,
         Queue,
         OperationRoom,
-        Safe,
+        Seif,
         CashDesk
     }
 }

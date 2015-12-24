@@ -13,7 +13,19 @@
          <Setter Property="Background" Value="Gray" />
          <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
      </Style>
- </Window.Resources>
+
+      <Style TargetType="{x:Type TextBlock}" x:Key="DepartmentTitleStyle">
+            <Setter Property="Margin" Value="15,2,2,3" />
+            <Setter Property="FontWeight" Value="Black" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+      </Style>
+     
+     <Style TargetType="{x:Type UserControl}" x:Key="DepartmentControlStyle">
+         <Setter Property="Margin" Value="3" />
+         <Setter Property="Background" Value="LightGray" />
+         <Setter Property="Padding" Value="3" />
+     </Style>
+    </Window.Resources>
     
     <Grid Background="GhostWhite" Margin="5">
         <Grid.RowDefinitions>
@@ -57,7 +69,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ContentControl prism:RegionManager.RegionName="Safe" />
+            <ContentControl prism:RegionManager.RegionName="Seif" />
             <ContentControl Grid.Column="1" prism:RegionManager.RegionName="CashDesk" />
             <ContentControl Grid.Column="2" prism:RegionManager.RegionName="Statistic" />
         </Grid>

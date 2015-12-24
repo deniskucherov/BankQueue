@@ -12,17 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankQueue.Core.Annotations;
+using BankQueue.ViewModel;
 
 namespace BankQueue.View
 {
     /// <summary>
-    /// Interaction logic for SafeView.xaml
+    /// Interaction logic for CashDeskView.xaml
     /// </summary>
-    public partial class SafeView : UserControl
+    public partial class SeifView : UserControl
     {
-        public SafeView()
+        public SeifView([NotNull] CashDeskViewModel viewModlel)
         {
+            if (viewModlel == null) throw new ArgumentNullException("viewModlel");
+
             InitializeComponent();
+            this.DataContext = viewModlel;
         }
     }
 }

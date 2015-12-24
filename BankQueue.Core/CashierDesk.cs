@@ -14,14 +14,14 @@ namespace BankQueue.Core
     {
         private readonly object _syncRoot = new object();
         private readonly Semaphore _stampSemaphore;
-        private readonly List<CashierStampRecord> _stamps; 
+        private readonly List<StampRecord> _stamps; 
 
         private int _stampsRemains; 
         
         public CashierDesk()
         {
             _stampSemaphore = new Semaphore(StampsCount, StampsCount);
-            _stamps = Enumerable.Range(0, StampsCount).Select(x => new CashierStampRecord(new Stamp(string.Format("Stamp #{0}", x + 1)))).ToList();
+            _stamps = Enumerable.Range(0, StampsCount).Select(x => new StampRecord(new Stamp(string.Format("Stamp #{0}", x + 1)))).ToList();
             _stampsRemains = StampsCount;
         }
 
@@ -44,10 +44,10 @@ namespace BankQueue.Core
                 _stampSemaphore.WaitOne();
                 lock (_syncRoot)
                 {
-                    var stampRecord = _stamps.FirstOrDefault(x => x.Status == CashierStampRecord.StampStatus.Free);
+                    var stampRecord = _stamps.FirstOrDefault(x => x.Status == StampRecord.StampStatus.Free);
                     if (stampRecord == null)
                         throw new ApplicationException("GetStamp error. stampRecord == null");
-                    stampRecord.ChangeStatus(CashierStampRecord.StampStatus.Issued, officer);
+                    stampRecord.ChangeStatus(StampRecord.StampStatus.Issued, officer);
                     
                     StampsRemains--;
                     return stampRecord.Stamp;
@@ -65,12 +65,12 @@ namespace BankQueue.Core
             {
                 lock (_syncRoot)
                 {
-                    var stampRecord = _stamps.SingleOrDefault(x => x.Status == CashierStampRecord.StampStatus.Issued
+                    var stampRecord = _stamps.SingleOrDefault(x => x.Status == StampRecord.StampStatus.Issued
                                                                    && x.Officer == officer);
                     if (stampRecord == null)
                         throw new ApplicationException("ReturnStamp error. stampRecord == null");
 
-                    stampRecord.ChangeStatus(CashierStampRecord.StampStatus.Free, officer);
+                    stampRecord.ChangeStatus(StampRecord.StampStatus.Free, officer);
                     StampsRemains++;
                 }
 

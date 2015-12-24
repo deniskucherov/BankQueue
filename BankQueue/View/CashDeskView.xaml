@@ -3,11 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BankQueue.View"
-             xmlns:viewModel="clr-namespace:BankQueue.ViewModel"
-             d:DataContext="{d:DesignInstance viewModel:CashDeskViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" Style="{DynamicResource DepartmentControlStyle}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -17,11 +14,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <TextBlock Text="Stamps:" />
-        <TextBlock Grid.Column="1" Text="{Binding StampProvider.StampsCount, Mode=OneWay}" />
-        <TextBlock Grid.Row="1" Text="Stamps remains:" />
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding StampProvider.StampsRemains, Mode=OneWay}" />
+
+        <StackPanel Orientation="Horizontal">
+            <Image Source="../Img/abacus32.png" />
+            <TextBlock Text="CASH DESK" Style="{DynamicResource DepartmentTitleStyle}" />
+        </StackPanel>
+      
     </Grid>
 </UserControl>

@@ -9,9 +9,9 @@ using BankQueue.Core.Annotations;
 
 namespace BankQueue.Core
 {
-    public sealed class CashierStampRecord
+    public sealed class StampRecord
     {
-        public CashierStampRecord(Stamp stamp)
+        public StampRecord(Stamp stamp)
         {
             Stamp = stamp;
             Status = StampStatus.Free;

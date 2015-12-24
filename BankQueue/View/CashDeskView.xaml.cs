@@ -12,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BankQueue.Core.Annotations;
-using BankQueue.ViewModel;
 
 namespace BankQueue.View
 {
@@ -22,12 +20,9 @@ namespace BankQueue.View
     /// </summary>
     public partial class CashDeskView : UserControl
     {
-        public CashDeskView([NotNull] CashDeskViewModel viewModlel)
+        public CashDeskView()
         {
-            if (viewModlel == null) throw new ArgumentNullException("viewModlel");
-
             InitializeComponent();
-            this.DataContext = viewModlel;
         }
     }
 }
