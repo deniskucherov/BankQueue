@@ -31,7 +31,7 @@ namespace BankQueue.ViewModel
 
         public QueueControlViewModel([NotNull] IEventAggregator eventAggregator)
         {
-            if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
+            if (eventAggregator == null) throw new ArgumentNullException("eventAggregator");
 
             _eventAggregator = eventAggregator;
             Init();
@@ -73,7 +73,7 @@ namespace BankQueue.ViewModel
 
         private void OnCustomerArrived(CustomerArgs args)
         {
-            if (args == null) throw new ArgumentNullException(nameof(args));
+            if (args == null) throw new ArgumentNullException("args");
 
             if (args.QueueType != QueueType) return;
 
@@ -88,7 +88,7 @@ namespace BankQueue.ViewModel
 
         private void OnCustomerServed([NotNull] CustomerArgs args)
         {
-            if (args == null) throw new ArgumentNullException(nameof(args));
+            if (args == null) throw new ArgumentNullException("args");
 
             Application.Current.Dispatcher.Invoke(() =>
             {

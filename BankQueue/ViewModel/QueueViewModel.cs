@@ -24,7 +24,7 @@ namespace BankQueue.ViewModel
 
         public QueueViewModel(IEventAggregator eventAggregator)
         {
-            if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
+            if (eventAggregator == null) throw new ArgumentNullException("eventAggregator");
             
             // poor man's DI
             _queueProcessor = ServiceLocator.Current.GetInstance<IQueueProcessor>();
@@ -52,7 +52,7 @@ namespace BankQueue.ViewModel
 
         private void OnCustomerArrived(CustomerArgs args)
         {
-            if (args == null) throw new ArgumentNullException(nameof(args));
+            if (args == null) throw new ArgumentNullException("args");
 
             _queueProcessor.AddCustomer(args);
         }

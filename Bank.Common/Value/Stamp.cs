@@ -9,7 +9,7 @@ namespace Bank.Common.Value
 {
     public struct Stamp : IEquatable<Stamp>
     {
-        public Stamp(string id)
+        public Stamp(string id) : this()
         {
             Id = id;
         }

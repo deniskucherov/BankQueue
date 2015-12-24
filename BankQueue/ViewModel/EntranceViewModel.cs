@@ -16,7 +16,7 @@ namespace BankQueue.ViewModel
 
         public EntranceViewModel(IEntranceDemon entranceDemon, IEventAggregator eventAggregator)
         {
-            if (entranceDemon == null) throw new ArgumentNullException(nameof(entranceDemon));
+            if (entranceDemon == null) throw new ArgumentNullException("entranceDemon");
 
             _entranceDemon = entranceDemon;
 

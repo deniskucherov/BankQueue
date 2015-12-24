@@ -15,7 +15,7 @@ namespace BankStatistic.Module
 
         public StatisticModule(IRegionManager regionManager)
         {
-            if (regionManager == null) throw new ArgumentNullException(nameof(regionManager));
+            if (regionManager == null) throw new ArgumentNullException("regionManager");
             _regionManager = regionManager;
         }
 

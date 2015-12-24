@@ -18,8 +18,8 @@ namespace BankQueue.Core
 
         public OperationRoomProcessor(IOperationQueue operationQueue, IStampProvider stampProvider)
         {
-            if (operationQueue == null) throw new ArgumentNullException(nameof(operationQueue));
-            if (stampProvider == null) throw new ArgumentNullException(nameof(stampProvider));
+            if (operationQueue == null) throw new ArgumentNullException("operationQueue");
+            if (stampProvider == null) throw new ArgumentNullException("stampProvider");
 
             _operationQueue = operationQueue;
             _stampProvider = stampProvider;

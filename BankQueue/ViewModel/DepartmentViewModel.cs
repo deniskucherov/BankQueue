@@ -27,7 +27,7 @@ namespace BankQueue.ViewModel
 
         public DepartmentViewModel(Department department)
         {
-            if (department == null) throw new ArgumentNullException(nameof(department));
+            if (department == null) throw new ArgumentNullException("department");
 
             if (_operationProcessor == null)
             {
@@ -48,8 +48,8 @@ namespace BankQueue.ViewModel
         public DepartmentViewModel(Department department, IOperationProcessor operationProcessor, IEventAggregator eventAggregator) 
             : this(department)
         {
-            if (operationProcessor == null) throw new ArgumentNullException(nameof(operationProcessor));
-            if (eventAggregator == null) throw new ArgumentNullException(nameof(eventAggregator));
+            if (operationProcessor == null) throw new ArgumentNullException("operationProcessor");
+            if (eventAggregator == null) throw new ArgumentNullException("eventAggregator");
 
             _operationProcessor = operationProcessor;
             _eventAggregator = eventAggregator;
@@ -124,7 +124,7 @@ namespace BankQueue.ViewModel
 
         private void OnProcessCompleted(object sender, CustomerArgs args)
         {
-            if (args == null) throw new ArgumentNullException(nameof(args));
+            if (args == null) throw new ArgumentNullException("args");
             _eventAggregator.GetEvent<CustomerServedEvent>().Publish(args);
         }
     }

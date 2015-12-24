@@ -17,7 +17,7 @@ namespace BankQueue.Core.QueueModel
 
         public BankQueueProcessor(QueueFactory factory)
         {
-            if (factory == null) throw new ArgumentNullException(nameof(factory));
+            if (factory == null) throw new ArgumentNullException("factory");
 
             _workingQueues = new Dictionary<QueueType, BankQueueCommon>(3);
             _workingQueues.Add(QueueType.Cashire, factory.CreateQueue(QueueType.Cashire));
@@ -52,7 +52,7 @@ namespace BankQueue.Core.QueueModel
         {
             try
             {
-                if (args == null) throw new ArgumentNullException(nameof(args));
+                if (args == null) throw new ArgumentNullException("args");
 
                 var queue = _workingQueues[args.QueueType];
                 if (queue == null)
@@ -75,7 +75,7 @@ namespace BankQueue.Core.QueueModel
             try
             {
                 if (types == null)
-                    throw new ArgumentNullException(nameof(types));
+                    throw new ArgumentNullException("types");
 
                 lock (_syncRoot)
                 {
@@ -106,7 +106,7 @@ namespace BankQueue.Core.QueueModel
             try
             {
                 if (types == null)
-                    throw new ArgumentNullException(nameof(types));
+                    throw new ArgumentNullException("types");
 
                 lock (_syncRoot)
                 {
@@ -131,7 +131,7 @@ namespace BankQueue.Core.QueueModel
             try
             {
                 if (types == null)
-                    throw new ArgumentNullException(nameof(types));
+                    throw new ArgumentNullException("types");
 
                 lock (_syncRoot)
                 {
@@ -155,7 +155,7 @@ namespace BankQueue.Core.QueueModel
             try
             {
                 if (types == null)
-                    throw new ArgumentNullException(nameof(types));
+                    throw new ArgumentNullException("types");
 
                 lock (_syncRoot)
                 {

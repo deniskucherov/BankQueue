@@ -24,7 +24,7 @@ namespace BankQueue.Core.QueueModel
         public virtual void AddCustomer(CustomerArgs customer)
         {
             if (customer == null)
-                throw new ArgumentNullException(nameof(customer));
+                throw new ArgumentNullException("customer");
 
             if (State == QueueState.Closed)
                 return;

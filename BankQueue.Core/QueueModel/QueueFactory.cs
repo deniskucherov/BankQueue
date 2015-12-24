@@ -20,7 +20,7 @@ namespace BankQueue.Core.QueueModel
                 case QueueType.Operational:
                     return new OperationalBankQueue();
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                    throw new ArgumentOutOfRangeException("type", type, null);
             }
         }
     }

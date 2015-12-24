@@ -17,7 +17,7 @@ namespace BankQueue.Core
             _timer = new Timer(Callback, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(500));
         }
 
-        public IEntranceInformation Information { get; }
+        public IEntranceInformation Information { get; private set; }
         public event EventHandler<CustomerArgs> CustomerArrivedEvent = delegate { };
 
         public void Start()

@@ -23,7 +23,7 @@ namespace BankQueue.View
     {
         public OperatingRoomView(OperatingRoomViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
 
             InitializeComponent();
             this.DataContext = viewModel;

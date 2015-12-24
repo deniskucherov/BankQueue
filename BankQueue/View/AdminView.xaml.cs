@@ -23,7 +23,7 @@ namespace BankQueue.View
     {
         public AdminView(AdminViewModel viewModel)
         {
-            if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
 
             InitializeComponent();
             this.DataContext = viewModel;

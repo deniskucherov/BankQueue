@@ -24,7 +24,7 @@ namespace BankQueue.View
     {
         public CashDeskView([NotNull] CashDeskViewModel viewModlel)
         {
-            if (viewModlel == null) throw new ArgumentNullException(nameof(viewModlel));
+            if (viewModlel == null) throw new ArgumentNullException("viewModlel");
 
             InitializeComponent();
             this.DataContext = viewModlel;

@@ -27,7 +27,7 @@ namespace Bank.Common
             try
             {
                 if (officer == null)
-                    throw new ArgumentNullException(nameof(officer));
+                    throw new ArgumentNullException("officer");
 
                 lock (_syncRoot)
                 {

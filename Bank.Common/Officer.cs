@@ -23,7 +23,7 @@ namespace Bank.Common
 
         public bool Equals(Officer other)
         {
-            if (other == null) throw new ArgumentNullException(nameof(other));
+            if (other == null) throw new ArgumentNullException("other");
             return Id.Equals(other.Id);
         }   
     }

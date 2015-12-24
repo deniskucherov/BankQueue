@@ -6,8 +6,8 @@ namespace Bank.Common.Value
     {
         public CustomerArgs(Customer customer, QueueType queueType, Payload operationPayload)
         {
-            if (customer == null) throw new ArgumentNullException(nameof(customer));
-            if (operationPayload == null) throw new ArgumentNullException(nameof(operationPayload));
+            if (customer == null) throw new ArgumentNullException("customer");
+            if (operationPayload == null) throw new ArgumentNullException("operationPayload");
 
             Id = Guid.NewGuid();
             Customer = customer;

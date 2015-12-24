@@ -23,9 +23,9 @@ namespace BankQueue.Core
 
         public WorkProcess(IWorkPlace workplace, IOperationQueue operationQueue, [NotNull] IStampProvider stampProvider)
         {
-            if (workplace == null) throw new ArgumentNullException(nameof(workplace));
-            if (operationQueue == null) throw new ArgumentNullException(nameof(operationQueue));
-            if (stampProvider == null) throw new ArgumentNullException(nameof(stampProvider));
+            if (workplace == null) throw new ArgumentNullException("workplace");
+            if (operationQueue == null) throw new ArgumentNullException("operationQueue");
+            if (stampProvider == null) throw new ArgumentNullException("stampProvider");
 
             _workplace = workplace;
             _operationQueue = operationQueue;

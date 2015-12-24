@@ -31,7 +31,7 @@ namespace BankQueue.Core
 
         public void ChangeStatus(StampStatus status, [NotNull] IOfficer officer)
         {
-            if (officer == null) throw new ArgumentNullException(nameof(officer));
+            if (officer == null) throw new ArgumentNullException("officer");
             Status = status;
             Officer = officer;
             Timestamp = DateTime.Now;

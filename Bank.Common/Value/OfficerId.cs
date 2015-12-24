@@ -8,7 +8,7 @@ namespace Bank.Common.Value
 {
     public struct OfficerId : IEquatable<OfficerId>
     {
-        public OfficerId(Guid value)
+        public OfficerId(Guid value) : this()
         {
             Value = value;
         }

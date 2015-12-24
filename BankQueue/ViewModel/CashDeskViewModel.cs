@@ -12,7 +12,7 @@ namespace BankQueue.ViewModel
     {
         public CashDeskViewModel([NotNull] IStampProvider stampProvider)
         {
-            if (stampProvider == null) throw new ArgumentNullException(nameof(stampProvider));
+            if (stampProvider == null) throw new ArgumentNullException("stampProvider");
             StampProvider = stampProvider;
         }
 
