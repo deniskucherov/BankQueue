@@ -19,11 +19,12 @@ namespace BankQueue.ViewModel
     {
         private readonly IOperationProcessor _operationProcessor;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IDepartmentManager _departmentManager;
 
         private ICommand _addWorkPlace, _deleteWorkPlace;
         private ICommand _startWork, _pauseWork, _stopWork;
 
-        private int _workPlaceId = 1;
+        private int _workPlaceId;
 
         public DepartmentViewModel(Department department)
         {
@@ -38,10 +39,13 @@ namespace BankQueue.ViewModel
                 _eventAggregator = ServiceLocator.Current.TryResolve<IEventAggregator>();
                 if (_eventAggregator == null)
                     throw new ApplicationException("_eventAggregator == null");
+                _departmentManager = ServiceLocator.Current.TryResolve<IDepartmentManager>();
+                if (_departmentManager == null)
+                    throw new ApplicationException("_departmentManager == null");
             }
             
             Department = department;
-            Workplaces = new ObservableCollection<Workplace>();
+            Workplaces = new ObservableCollection<IWorkPlace>();
             _operationProcessor.ProcessCompleted += OnProcessCompleted;
         }
        
@@ -56,10 +60,10 @@ namespace BankQueue.ViewModel
         }
 
         public Department Department { get; private set; }
-        public int WorkPlaceCount { get; private set; }
+        public int WorkPlaceCount { get { return _departmentManager.WorkpPlacesCount; } }
 
-        public ObservableCollection<Workplace> Workplaces { get; private set; } 
-        public Workplace SelectedWorkPlace { get; set; } 
+        public ObservableCollection<IWorkPlace> Workplaces { get; private set; } 
+        public IWorkPlace SelectedWorkPlace { get; set; } 
 
         public ICommand AddWorkPlaceCommand
         {
@@ -88,38 +92,73 @@ namespace BankQueue.ViewModel
 
         private void ExecutePauseWorkCommand()
         {
-            
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                HandleException("ExecutePauseWorkCommand error.", ex);
+            }
         }
 
         private void ExecuteStopWorkCommand()
         {
-            
+            try
+            {
+                if (SelectedWorkPlace == null) return;
+                _operationProcessor.StopWorkplaceProccess(SelectedWorkPlace);
+            }
+            catch (Exception ex)
+            {
+                HandleException("ExecuteStopWorkCommand error.", ex);
+            }
         }
 
         private void ExecuteStartWorkCommand()
         {
-            _operationProcessor.StartWorkplaceProccess(SelectedWorkPlace);
+            try
+            {
+                if (SelectedWorkPlace == null) return;
+                _operationProcessor.StartWorkplaceProccess(SelectedWorkPlace);
+            }
+            catch (Exception ex)
+            {
+                HandleException("ExecuteStartWorkCommand error.", ex);
+            }
         }
 
         private void ExecuteAddWorkPlaceCommand()
         {
-            WorkPlaceCount++;
-            var workPlace = new Workplace(string.Format("WorkPlace #{0}", _workPlaceId++), Department.QueueType);
-
-            var person = new Person("Ivan S.A", 35, Gender.M);
-            var officer = new Officer(person);
-            workPlace.AddOfficer(officer);
-            Workplaces.Add(workPlace);
+            try
+            {
+                var workPlace = _departmentManager.CreateWorkplace(Department.QueueType);
+                var officer = _departmentManager.CreateOfficer();
+                workPlace.AddOfficer(officer);
+                Workplaces.Add(workPlace);
+            }
+            catch (Exception ex)
+            {
+                HandleException("ExecuteAddWorkPlaceCommand error.", ex);
+            }
         }
 
         private void ExecuteDeleteWorkPlaceCommand()
         {
             if (SelectedWorkPlace == null) return;
 
-            WorkPlaceCount--;
-            Workplaces.Remove(SelectedWorkPlace);
-            SelectedWorkPlace = Workplaces.FirstOrDefault();
-            OnPropertyChanged(()=>SelectedWorkPlace);
+            try
+            {
+             //   WorkPlaceCount--;
+             //   Workplaces.Remove(SelectedWorkPlace);
+             //   SelectedWorkPlace = Workplaces.FirstOrDefault();
+
+                OnPropertyChanged(() => SelectedWorkPlace);
+            }
+            catch (Exception ex)
+            {
+                HandleException("ExecuteDeleteWorkPlaceCommand error.", ex);
+            }
         }
 
         private void OnProcessCompleted(object sender, CustomerArgs args)

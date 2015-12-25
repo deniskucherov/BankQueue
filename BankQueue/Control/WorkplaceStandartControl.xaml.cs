@@ -43,5 +43,14 @@ namespace BankQueue.Control
             get { return (Officer) GetValue(OfficerProperty); }
             set { SetValue(OfficerProperty, value); }
         }
+
+        public static readonly DependencyProperty WorkStateProperty = DependencyProperty.Register(
+            "WorkState", typeof (WorkState), typeof (WorkplaceStandartControl), new PropertyMetadata(default(WorkState)));
+
+        public WorkState WorkState
+        {
+            get { return (WorkState) GetValue(WorkStateProperty); }
+            set { SetValue(WorkStateProperty, value); }
+        }
     }
 }

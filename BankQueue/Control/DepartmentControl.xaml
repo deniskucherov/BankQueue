@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankQueue.Control"
              xmlns:viewModel="clr-namespace:BankQueue.ViewModel"
+             xmlns:converters="clr-namespace:BankQueue.Converters"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:DepartmentViewModel}"
              d:DesignHeight="120" d:DesignWidth="300" >
+ <UserControl.Resources>
+        <converters:WorkStateToWorkPlaceActiveConverter x:Key="WorkStateToActiveConverter" />
+    </UserControl.Resources>
     
     <GroupBox Padding="2"
         Header="{Binding Path=DepartmentName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DepartmentControl}}}">
@@ -39,8 +43,10 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <local:WorkplaceStandartControl WorkplaceName="{Binding Name, Mode=OneTime}"
-                                                         Officer="{Binding CurrentOfficer, Mode=OneWay}"/>
+                        <local:WorkplaceStandartControl IsEnabled="{Binding State, Mode=OneWay, Converter={StaticResource WorkStateToActiveConverter}}" 
+                                                        WorkplaceName="{Binding Name, Mode=OneTime}"
+                                                        WorkState="{Binding State, Mode=OneWay}"
+                                                        Officer="{Binding CurrentOfficer, Mode=OneWay}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

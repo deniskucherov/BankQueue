@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Converters\AgeGroupToQueueItemHeightConverter.cs" />
     <Compile Include="Converters\GenderToColorConverter.cs" />
+    <Compile Include="Converters\WorkStateToWorkPlaceActiveConverter.cs" />
     <Compile Include="DomainEvents\ClearQueueEvent.cs" />
     <Compile Include="DomainEvents\CustomerArrivedEvent.cs" />
     <Compile Include="DomainEvents\CustomerRejectedEvent.cs" />

@@ -14,7 +14,7 @@ namespace BankQueue.Core
         private readonly object _syncRoot = new object();
         private readonly IOperationQueue _operationQueue;
         private readonly IStampProvider _stampProvider;
-        private readonly List<WorkProcess> _processes;
+        private readonly List<IWorkProcess> _processes;
 
         public OperationRoomProcessor(IOperationQueue operationQueue, IStampProvider stampProvider)
         {
@@ -23,19 +23,37 @@ namespace BankQueue.Core
 
             _operationQueue = operationQueue;
             _stampProvider = stampProvider;
-            _processes = new List<WorkProcess>();
+            _processes = new List<IWorkProcess>();
         }
 
         public event EventHandler<CustomerArgs> ProcessCompleted = delegate { };
 
         public IWorkProcess StartWorkplaceProccess(IWorkPlace workplace)
         {
-            var process = new WorkProcess(workplace, _operationQueue, _stampProvider);
-            process.ProcessCompleted += (sender, args) => { ProcessCompleted(sender, args); };
-            _processes.Add(process);
-            process.Start();
+            try
+            {
+                if (workplace == null) throw new ArgumentNullException("workplace");
+                IWorkProcess process = null;
 
-            return process;
+                lock (_syncRoot)
+                {
+                    process = _processes.SingleOrDefault(x => x.Workplace.Equals(workplace));
+                    if (process == null)
+                    {
+                        process = new WorkProcess(workplace, _operationQueue, _stampProvider);
+                        process.ProcessCompleted += (sender, args) => { ProcessCompleted(sender, args); };
+                        _processes.Add(process);
+                    }
+
+                    process.Start();
+                }
+
+                return process;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("StartWorkplaceProccess error.", ex);
+            }
         }
 
         public void PauseWorkplaceProccess(IWorkPlace workplace)
@@ -43,16 +61,44 @@ namespace BankQueue.Core
             
         }
 
-        public void StopWorkplaceProccess(Workplace workplace)
+        public void StopWorkplaceProccess(IWorkPlace workplace)
         {
-            
+            try
+            {
+                if (workplace == null) throw new ArgumentNullException("workplace");
+                lock (_syncRoot)
+                {
+                    var process = _processes.SingleOrDefault(x => x.Workplace.Equals(workplace));
+                    if (process == null)
+                        throw new ApplicationException("process == null");
+                    process.Stop();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("StopWorkplaceProccess error.", ex);
+            }
         }
 
-        public void DeleteWorkplaceProccess(Workplace workplace)
+        public void DeleteWorkplaceProccess(IWorkPlace workplace)
         {
-            
+            try
+            {
+                if (workplace == null) throw new ArgumentNullException("workplace");
+                lock (_syncRoot)
+                {
+                    var process = _processes.SingleOrDefault(x => x.Workplace.Equals(workplace));
+                    if (process == null)
+                        throw new ApplicationException("process == null");
+                    process.Stop();
+                    _processes.Remove(process);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("StopWorkplaceProccess error.", ex);
+            }
         }
-
 
     }
 }

@@ -15,9 +15,8 @@ namespace BankQueue.Core
     {
         private readonly object _syncRoot = new object();
         private readonly Guid _id;
-        private readonly IWorkPlace _workplace;
+        
         private readonly Timer _timer;
-
         private readonly IOperationQueue _operationQueue;
         private readonly IStampProvider _stampProvider;
 
@@ -27,7 +26,9 @@ namespace BankQueue.Core
             if (operationQueue == null) throw new ArgumentNullException("operationQueue");
             if (stampProvider == null) throw new ArgumentNullException("stampProvider");
 
-            _workplace = workplace;
+            _id = Guid.NewGuid();
+            Workplace = workplace;
+            workplace.SetParrentWorkProcess(this);
             _operationQueue = operationQueue;
             _stampProvider = stampProvider;
             State = WorkState.Stoped;
@@ -35,26 +36,30 @@ namespace BankQueue.Core
         }
 
         public event EventHandler<CustomerArgs> ProcessCompleted = delegate { };
+        public event EventHandler<WorkState> StateChanged = delegate {};
 
         public Guid ProcessId { get { return _id; } }
-        public WorkState State { get; private set; }     
+        public WorkState State { get; private set; }
+        public IWorkPlace Workplace { get; private set; }
 
         public void Start()
         {
             State = WorkState.InWork;
             _timer.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
+            StateChanged(this, State);
         }
 
         public void Stop()
         {
             State = WorkState.Stoped;
-            _timer.Change(Timeout.Infinite, Timeout.Infinite);
+            StateChanged(this, State);
         }
 
         public void Pause()
         {
             State = WorkState.Paused;
             _timer.Change(Timeout.Infinite, Timeout.Infinite);
+            StateChanged(this, State);
         }
 
         private void TimerCallback(object state)
@@ -62,6 +67,7 @@ namespace BankQueue.Core
             if (!Monitor.TryEnter(_syncRoot)) return;
             try
             {
+                if (State != WorkState.InWork) return;
                 WorkWithCustomer();
             }
             catch (Exception ex)
@@ -77,10 +83,10 @@ namespace BankQueue.Core
 
         private void WorkWithCustomer()
         {
-            var customerArgs = _operationQueue.GetNextCustomer(_workplace.QueueType);
+            var customerArgs = _operationQueue.GetNextCustomer(Workplace.QueueType);
             if (customerArgs == null) return;
 
-            var officer = _workplace.GetNextOfficer();
+            var officer = Workplace.GetNextOfficer();
 
             Thread.Sleep(3000);
 

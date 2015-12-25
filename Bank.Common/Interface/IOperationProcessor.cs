@@ -10,6 +10,10 @@ namespace Bank.Common.Interface
     public interface IOperationProcessor
     {
         IWorkProcess StartWorkplaceProccess(IWorkPlace workplace);
+        void StopWorkplaceProccess(IWorkPlace workplace);
+        void PauseWorkplaceProccess(IWorkPlace workplace);
+        void DeleteWorkplaceProccess(IWorkPlace workplace);
+        
         event EventHandler<CustomerArgs> ProcessCompleted;
     }
 }

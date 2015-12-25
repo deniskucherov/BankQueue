@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankQueue.Control"
-             mc:Ignorable="d" Margin="3"
+             mc:Ignorable="d" Margin="3" 
              d:DesignHeight="150" Width="150" Background="LightGray">
  <UserControl.Resources>
+     
      <Style TargetType="{x:Type Image}">
          <Setter Property="Height" Value="24" />
      </Style>
@@ -20,11 +21,17 @@
     
     <Grid>
          <Grid.RowDefinitions>
+             <RowDefinition Height="Auto" />
              <RowDefinition Height="*" />
              <RowDefinition Height="Auto" />
          </Grid.RowDefinitions>
         
-        <Grid>
+        <Border BorderBrush="Gray" BorderThickness="1" Padding="1" >
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Black"
+               Content="{Binding Path=WorkplaceName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WorkplaceStandartControl}}}" />
+        </Border>
+       
+        <Grid Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
@@ -41,7 +48,7 @@
                 <!--<Label>raiting</Label>-->
                 <Label Content="{Binding Officer.Person.Name, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:WorkplaceStandartControl}}}" />
             </StackPanel>
-            <Image Grid.Row="2" Source="../Img/handhandshake32.png" />
+            <Image Grid.Row="2" IsEnabled="False" Source="../Img/handhandshake32.png" />
             <Label Grid.Row="2" Grid.Column="1" Content="Status..." />
             
             <Border Grid.Row="3" Grid.ColumnSpan="2">
@@ -63,9 +70,10 @@
             
         </Grid>
         
-        <Border Grid.Row="1">
+        <Border Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button Content="Add officer" />
+                <Label Content="{Binding Path=WorkState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:WorkplaceStandartControl}}" />
             </StackPanel>
         </Border>
        

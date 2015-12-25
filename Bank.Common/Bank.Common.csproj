@@ -45,6 +45,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Gender.cs" />
+    <Compile Include="Interface\IDepartmentManager.cs" />
     <Compile Include="Value\Age.cs" />
     <Compile Include="Value\AgeGroup.cs" />
     <Compile Include="Value\GeneratorArgs.cs" />

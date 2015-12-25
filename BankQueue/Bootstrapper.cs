@@ -43,7 +43,7 @@ namespace BankQueue
                 {
                     if (
                         MessageBox.Show("Wait till there are still any customers in a bank?", "Bye...",
-                            MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
+                            MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         cancelEventArgs.Cancel = true;
                         return;
@@ -98,6 +98,8 @@ namespace BankQueue
                  
             Container.RegisterType<IAdministrator, BankAdministrator>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IOfficeInformation, BankAdministrator>(new ContainerControlledLifetimeManager());
-        }
+
+            Container.RegisterType<IDepartmentManager, DepartmentManager>(new ContainerControlledLifetimeManager());
+;        }
     }
 }

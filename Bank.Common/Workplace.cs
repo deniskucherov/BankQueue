@@ -9,25 +9,31 @@ using Bank.Common.Interface;
 
 namespace Bank.Common
 {
-    public sealed class Workplace : IWorkPlace, IEquatable<Workplace>, INotifyPropertyChanged
+    public sealed class WorkPlace : IWorkPlace, IEquatable<WorkPlace>, INotifyPropertyChanged
     {
         private readonly object _syncRoot = new object();
-        private readonly LinkedList<Officer> _officers;
-        private Officer _currentOfficer;
+        private readonly LinkedList<IOfficer> _officers;
+        private IOfficer _currentOfficer;
         
-        public Workplace(string name, QueueType queueType)
+        public WorkPlace(string name, QueueType queueType)
         {
             Name = name;
             QueueType = queueType;
-            _officers = new LinkedList<Officer>();
+            _officers = new LinkedList<IOfficer>();
         }
 
         public string Name { get; private set; }
         public QueueType QueueType { get; private set; }
 
-        public Officer CurrentOfficer { get { return _currentOfficer; } }
+        public IOfficer CurrentOfficer { get { return _currentOfficer; } }
+        public IWorkProcess WorkProcess { get; private set; }
 
-        public void AddOfficer(Officer officer)
+        public WorkState State
+        {
+            get { return WorkProcess == null ? WorkState.NaN : WorkProcess.State; }
+        }    
+
+        public void AddOfficer(IOfficer officer)
         {
             try
             {
@@ -36,7 +42,7 @@ namespace Bank.Common
 
                 lock (_syncRoot)
                 {
-                    _officers.AddLast(new LinkedListNode<Officer>(officer));
+                    _officers.AddLast(new LinkedListNode<IOfficer>(officer));
                     _currentOfficer = officer;
                 }
             }
@@ -46,7 +52,7 @@ namespace Bank.Common
             }
         }
 
-        public Officer GetNextOfficer()
+        public IOfficer GetNextOfficer()
         {
             if (_officers.Count == 0)
                 return null;
@@ -56,7 +62,17 @@ namespace Bank.Common
             return _currentOfficer;
         }
 
-        public bool Equals(Workplace other)
+        public void SetParrentWorkProcess(IWorkProcess process)
+        {
+            if (process == null) throw new ArgumentNullException("process");
+            if (WorkProcess != null) throw new ApplicationException("WorkProcess != null");
+            
+            WorkProcess = process;
+            process.StateChanged += (sender, state) => OnPropertyChanged("State");
+        }
+
+
+        public bool Equals(WorkPlace other)
         {
             return Name.Equals(other.Name);
         }

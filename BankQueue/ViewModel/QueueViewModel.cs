@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
-using System.Windows.Input;
 using Bank.Common;
 using Bank.Common.Interface;
 using Bank.Common.Value;
 using BankQueue.DomainEvents;
 using Microsoft.Practices.ServiceLocation;
-using Prism.Commands;
 using Prism.Events;
 
 namespace BankQueue.ViewModel

@@ -9,10 +9,13 @@ namespace Bank.Common.Interface
     public interface IWorkPlace
     {
         string Name { get; }
-        QueueType QueueType { get; }
-        void AddOfficer(Officer officer);
-        Officer CurrentOfficer { get; }
 
-        Officer GetNextOfficer();
+        QueueType QueueType { get; }
+        WorkState State { get; }
+        IOfficer CurrentOfficer { get; }
+
+        void AddOfficer(IOfficer officer);
+        IOfficer GetNextOfficer();
+        void SetParrentWorkProcess(IWorkProcess process);
     }
 }

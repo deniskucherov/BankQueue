@@ -8,6 +8,7 @@ namespace Bank.Common
 {
     public enum WorkState
     {
+        NaN = 0,
         InWork = 1,
         Stoped = 2,
         Paused = 3,

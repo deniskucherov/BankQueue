@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CashierDesk.cs" />
+    <Compile Include="DepartmentManager.cs" />
     <Compile Include="EntranceDemon.cs" />
     <Compile Include="OperationRoomProcessor.cs" />
     <Compile Include="Properties\Annotations.cs" />
