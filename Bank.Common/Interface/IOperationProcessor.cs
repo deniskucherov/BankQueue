@@ -13,7 +13,8 @@ namespace Bank.Common.Interface
         void StopWorkplaceProccess(IWorkPlace workplace);
         void PauseWorkplaceProccess(IWorkPlace workplace);
         void DeleteWorkplaceProccess(IWorkPlace workplace);
-        
+
+        event EventHandler<CustomerArgs> ProcessStarted;
         event EventHandler<CustomerArgs> ProcessCompleted;
     }
 }

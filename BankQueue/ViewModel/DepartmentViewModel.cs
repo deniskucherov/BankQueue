@@ -46,9 +46,11 @@ namespace BankQueue.ViewModel
             
             Department = department;
             Workplaces = new ObservableCollection<IWorkPlace>();
+
+            _operationProcessor.ProcessStarted += OnProcessStarted;
             _operationProcessor.ProcessCompleted += OnProcessCompleted;
         }
-       
+
         public DepartmentViewModel(Department department, IOperationProcessor operationProcessor, IEventAggregator eventAggregator) 
             : this(department)
         {
@@ -165,6 +167,12 @@ namespace BankQueue.ViewModel
         {
             if (args == null) throw new ArgumentNullException("args");
             _eventAggregator.GetEvent<CustomerServedEvent>().Publish(args);
+        }
+
+        private void OnProcessStarted(object sender, CustomerArgs args)
+        {
+            if (args == null) throw new ArgumentNullException("args");
+            _eventAggregator.GetEvent<CustomerServeStartsEvent>().Publish(args);
         }
     }
 }

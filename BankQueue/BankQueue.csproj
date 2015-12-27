@@ -106,12 +106,14 @@
     <Compile Include="DomainEvents\CustomerArrivedEvent.cs" />
     <Compile Include="DomainEvents\CustomerRejectedEvent.cs" />
     <Compile Include="DomainEvents\CustomerServedEvent.cs" />
+    <Compile Include="DomainEvents\CustomerServeStartsEvent.cs" />
     <Compile Include="DomainEvents\RoomMonitorSyncEvent.cs" />
     <Compile Include="Model\BankAdministrator.cs" />
     <Compile Include="Model\CustomerParser.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\CashDeskViewModel.cs" />
     <Compile Include="ViewModel\CommonServiceViewModel.cs" />
+    <Compile Include="ViewModel\CommonSyncViewModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
     <Compile Include="ViewModel\DepartmentViewModel.cs" />
     <Compile Include="ViewModel\EntranceViewModel.cs" />

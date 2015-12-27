@@ -35,6 +35,7 @@ namespace BankQueue.Core
             _timer = new Timer(TimerCallback, null, Timeout.Infinite, Timeout.Infinite);
         }
 
+        public event EventHandler<CustomerArgs> ProcessStarted = delegate { };
         public event EventHandler<CustomerArgs> ProcessCompleted = delegate { };
         public event EventHandler<WorkState> StateChanged = delegate {};
 
@@ -86,8 +87,9 @@ namespace BankQueue.Core
             var customerArgs = _operationQueue.GetNextCustomer(Workplace.QueueType);
             if (customerArgs == null) return;
 
-            var officer = Workplace.GetNextOfficer();
+            ProcessStarted(this, customerArgs);
 
+            var officer = Workplace.GetNextOfficer();
             Thread.Sleep(3000);
 
           //  var  stamp = _stampProvider.GetStamp(officer);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using Bank.Common;
@@ -16,11 +16,9 @@ using Prism.Events;
 
 namespace BankQueue.ViewModel
 {
-    public sealed class QueueControlViewModel : CommonViewModel
+    public sealed class QueueControlViewModel : CommonSyncViewModel
     {
-        private readonly object _syncRoot = new object();
         private readonly IEventAggregator _eventAggregator;
-
         private ICommand _clearQueueCommand;
 
         public QueueControlViewModel()
@@ -43,7 +41,8 @@ namespace BankQueue.ViewModel
             _eventAggregator.GetEvent<RoomMonitorSyncEvent>().Subscribe(o => { OnPropertyChanged(""); });
             _eventAggregator.GetEvent<CustomerArrivedEvent>().Subscribe(OnCustomerArrived);
             _eventAggregator.GetEvent<CustomerServedEvent>().Subscribe(OnCustomerServed);
-        }
+            _eventAggregator.GetEvent<CustomerServeStartsEvent>().Subscribe(OnCustomerServeStarts);
+        }     
 
         public QueueType QueueType { get; set; }
         public ObservableCollection<CustomerArgs>  Customers { get; set; }
@@ -61,6 +60,7 @@ namespace BankQueue.ViewModel
                 return;
             }
 
+            // using app dispatcher as an example..
             Application.Current.Dispatcher.Invoke(() =>
             {
                 lock (_syncRoot)
@@ -77,28 +77,43 @@ namespace BankQueue.ViewModel
 
             if (args.QueueType != QueueType) return;
 
-            Application.Current.Dispatcher.Invoke(() =>
+            // async call
+            _syncContext.Post(state =>
             {
                 lock (_syncRoot)
                 {
                     Customers.Add(args);
                 }
-            });
+            }, null);
         }
 
         private void OnCustomerServed([NotNull] CustomerArgs args)
         {
             if (args == null) throw new ArgumentNullException("args");
 
-            Application.Current.Dispatcher.Invoke(() =>
+        }
+
+        private void OnCustomerServeStarts(CustomerArgs args)
+        {
+            try
             {
-                lock (_syncRoot)
+                if (args == null) throw new ArgumentNullException("args");
+
+                // sync call
+                _syncContext.Send(state =>
                 {
-                    var customer = Customers.SingleOrDefault(x => x.Id == args.Id);
-                    if (customer == null) return;
-                    Customers.Remove(customer);
-                }
-            });
+                    lock (_syncRoot)
+                    {
+                        var customer = Customers.SingleOrDefault(x => x.Id == args.Id);
+                        if (customer == null) return;
+                        Customers.Remove(customer);
+                    }
+                }, null);
+            }
+            catch (Exception ex)
+            {
+                HandleException("OnCustomerServeStarts error.", ex);
+            }
         }
     }
 }

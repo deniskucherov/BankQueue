@@ -9,6 +9,7 @@ namespace Bank.Common.Interface
 {
     public interface IWorkProcess
     {
+        event EventHandler<CustomerArgs> ProcessStarted;
         event EventHandler<CustomerArgs> ProcessCompleted;
         event EventHandler<WorkState> StateChanged;
 

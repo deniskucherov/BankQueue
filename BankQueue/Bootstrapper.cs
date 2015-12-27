@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using Bank.Common;
 using Bank.Common.Interface;
 using BankQueue.Core;
@@ -71,7 +73,10 @@ namespace BankQueue
             regionManager.RegisterViewWithRegion(ApplicationRegion.Seif.ToString(), typeof (SeifView));
             regionManager.RegisterViewWithRegion(ApplicationRegion.CashDesk.ToString(), typeof (CashDeskView));
             regionManager.RegisterViewWithRegion(ApplicationRegion.Statistic.ToString(), typeof (StatisticView));
-            return new MainWindow();
+
+            var wnd = new MainWindow();
+            SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(Dispatcher.CurrentDispatcher));
+            return wnd;
         }
 
         protected override void ConfigureModuleCatalog()

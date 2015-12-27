@@ -26,6 +26,7 @@ namespace BankQueue.Core
             _processes = new List<IWorkProcess>();
         }
 
+        public event EventHandler<CustomerArgs> ProcessStarted = delegate { };
         public event EventHandler<CustomerArgs> ProcessCompleted = delegate { };
 
         public IWorkProcess StartWorkplaceProccess(IWorkPlace workplace)
@@ -41,6 +42,7 @@ namespace BankQueue.Core
                     if (process == null)
                     {
                         process = new WorkProcess(workplace, _operationQueue, _stampProvider);
+                        process.ProcessStarted += (sender, args) => { ProcessStarted(sender, args); };
                         process.ProcessCompleted += (sender, args) => { ProcessCompleted(sender, args); };
                         _processes.Add(process);
                     }
