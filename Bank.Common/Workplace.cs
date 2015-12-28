@@ -15,6 +15,7 @@ namespace Bank.Common
         private readonly LinkedList<IOfficer> _officers;
         private IOfficer _currentOfficer;
         
+
         public WorkPlace(string name, QueueType queueType)
         {
             Name = name;
@@ -27,6 +28,7 @@ namespace Bank.Common
 
         public IOfficer CurrentOfficer { get { return _currentOfficer; } }
         public IWorkProcess WorkProcess { get; private set; }
+        public Customer CurrentCustomer { get; private set; }
 
         public WorkState State
         {
@@ -69,6 +71,16 @@ namespace Bank.Common
             
             WorkProcess = process;
             process.StateChanged += (sender, state) => OnPropertyChanged("State");
+            process.ProcessStarted += (sender, args) =>
+            {
+                CurrentCustomer = args.Customer;
+                OnPropertyChanged("CurrentCustomer");
+            };
+            process.ProcessCompleted += (sender, args) =>
+            {
+                CurrentCustomer = null;
+                OnPropertyChanged("CurrentCustomer");
+            };
         }
 
 

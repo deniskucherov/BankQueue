@@ -13,6 +13,7 @@ namespace Bank.Common.Interface
         QueueType QueueType { get; }
         WorkState State { get; }
         IOfficer CurrentOfficer { get; }
+        Customer CurrentCustomer { get; }
 
         void AddOfficer(IOfficer officer);
         IOfficer GetNextOfficer();

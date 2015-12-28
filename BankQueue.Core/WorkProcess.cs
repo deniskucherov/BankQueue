@@ -97,6 +97,7 @@ namespace BankQueue.Core
           //  _stampProvider.ReturnStamp(officer);
 
             ProcessCompleted(this, customerArgs);
+            Thread.Sleep(500);
         }
 
     }

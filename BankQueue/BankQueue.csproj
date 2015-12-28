@@ -100,6 +100,7 @@
       <DependentUpon>WorkplaceStandartControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AgeGroupToQueueItemHeightConverter.cs" />
+    <Compile Include="Converters\CustomerWorkPlacePresentationConverter.cs" />
     <Compile Include="Converters\GenderToColorConverter.cs" />
     <Compile Include="Converters\WorkStateToWorkPlaceActiveConverter.cs" />
     <Compile Include="DomainEvents\ClearQueueEvent.cs" />
@@ -266,6 +267,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\abacus32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\bank32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

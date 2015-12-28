@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BankQueue.View"
              xmlns:viewModel="clr-namespace:BankQueue.ViewModel"
+             Style="{DynamicResource DepartmentControlStyle}"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModel:EntranceViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300" Margin="3" BorderBrush="Green" BorderThickness="2">
+             >
     <UserControl.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="3,0,3,0" />
@@ -15,10 +15,10 @@
     <Grid Margin="3">
            <Grid.RowDefinitions>
                <RowDefinition Height="Auto"/>
-               <RowDefinition Height="Auto"/>
-           </Grid.RowDefinitions> 
-        
-            <Label Content="ENTRANCE" />
+               <RowDefinition Height="*"/>
+           </Grid.RowDefinitions>
+
+        <TextBlock Text="ENTRANCE" Style="{DynamicResource DepartmentTitleStyle}" />
         
             <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Content="Open Doors" Command="{Binding StartCommand, Mode=OneWay}" />

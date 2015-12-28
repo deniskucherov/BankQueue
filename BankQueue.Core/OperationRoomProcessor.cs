@@ -71,8 +71,7 @@ namespace BankQueue.Core
                 lock (_syncRoot)
                 {
                     var process = _processes.SingleOrDefault(x => x.Workplace.Equals(workplace));
-                    if (process == null)
-                        throw new ApplicationException("process == null");
+                    if (process == null) return;
                     process.Stop();
                 }
             }

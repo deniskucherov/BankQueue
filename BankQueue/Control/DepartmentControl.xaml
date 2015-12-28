@@ -10,7 +10,7 @@
              d:DesignHeight="120" d:DesignWidth="300" >
  <UserControl.Resources>
         <converters:WorkStateToWorkPlaceActiveConverter x:Key="WorkStateToActiveConverter" />
-    </UserControl.Resources>
+ </UserControl.Resources>
     
     <GroupBox Padding="2"
         Header="{Binding Path=DepartmentName, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:DepartmentControl}}}">
@@ -21,11 +21,11 @@
             </Grid.RowDefinitions>
             
             <StackPanel Orientation="Horizontal">
-                <Button Content="Add WorkPlace" Command="{Binding AddWorkPlaceCommand, Mode=OneTime}" />
-                <Button Content="Delete WorkPlace" Command="{Binding DeleteWorkPlaceCommand, Mode=OneTime}" />
-                <Button Content="Start Work" Command="{Binding StartWorkCommand, Mode=OneTime}" />
-                <Button Content="Pause Work" Command="{Binding PauseWorkCommand, Mode=OneTime}" />
-                <Button Content="Stop Work" Command="{Binding StopWorkCommand, Mode=OneTime}" />
+                <Button Content="Add WorkPlace" Style="{DynamicResource LinkButton}" Command="{Binding AddWorkPlaceCommand, Mode=OneTime}" />
+                <Button Content="Delete WorkPlace" Style="{DynamicResource LinkButton}" Command="{Binding DeleteWorkPlaceCommand, Mode=OneTime}" />
+                <Button Content="Start Work" Style="{DynamicResource LinkButton}" Command="{Binding StartWorkCommand, Mode=OneTime}" />
+                <Button Content="Pause Work" Style="{DynamicResource LinkButton}" Command="{Binding PauseWorkCommand, Mode=OneTime}" />
+                <Button Content="Stop Work" Style="{DynamicResource LinkButton}" Command="{Binding StopWorkCommand, Mode=OneTime}" />
             </StackPanel>
             
             <ListBox Grid.Row="1" ItemsSource="{Binding Workplaces, Mode=OneTime}" SelectionMode="Single"
@@ -44,6 +44,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <local:WorkplaceStandartControl IsEnabled="{Binding State, Mode=OneWay, Converter={StaticResource WorkStateToActiveConverter}}" 
+                                                        Customer="{Binding CurrentCustomer, Mode=OneWay}"
                                                         WorkplaceName="{Binding Name, Mode=OneTime}"
                                                         WorkState="{Binding State, Mode=OneWay}"
                                                         Officer="{Binding CurrentOfficer, Mode=OneWay}"/>

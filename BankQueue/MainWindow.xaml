@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Bank queue simulator.." Height="700" Width="725">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Icon="../Img/bank32.png"
+        Title="Bank queue simulator.." Height="600" Width="750">
     
  <Window.Resources>
      <Style TargetType="{x:Type GridSplitter}">
@@ -25,6 +25,25 @@
          <Setter Property="Background" Value="LightGray" />
          <Setter Property="Padding" Value="3" />
      </Style>
+        <Style x:Key="LinkButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <TextBlock TextDecorations="Underline">
+                            <ContentPresenter Margin="5,0,5,0" />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="FontWeight" Value="Black" />
+            <Setter Property="Foreground" Value="SaddleBrown" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="SandyBrown" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     
     <Grid Background="GhostWhite" Margin="5">
@@ -36,10 +55,10 @@
             <RowDefinition Height="Auto" MinHeight="50" />
         </Grid.RowDefinitions>
 
-        <GroupBox Header="Administration" Padding="3">
+        <GroupBox Header="Administration" Padding="1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" MinWidth="100" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
