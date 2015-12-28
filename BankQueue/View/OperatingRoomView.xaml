@@ -12,9 +12,9 @@
     <GroupBox Header="Operational room">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="150" />
-                <RowDefinition Height="150" />
-                <RowDefinition Height="150" />
+                <RowDefinition Height="160" />
+                <RowDefinition Height="160" />
+                <RowDefinition Height="160" />
             </Grid.RowDefinitions>
             
             <control:DepartmentControl QueueType="{x:Static Member=common:QueueType.Operational}" />
