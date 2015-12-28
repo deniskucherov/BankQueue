@@ -8,11 +8,25 @@ using Service.Common;
 
 namespace BankService
 {
-    public class ReportServiceManager : IReportService
+    public class ReportServiceManager : IReportService, IPingService
     {
+        public ServiceInformationDto ServiceInformation()
+        {
+            return new ServiceInformationDto
+            {
+                ServiceName = "ReportService",
+                Version = 1
+            };
+        }
+
         public CustomerDto CustomersForPeriod(DateTime? dateTimeFrom, DateTime? dateTimeTo)
         {
             throw new NotImplementedException();
+        }
+
+        public void Ping()
+        {
+            
         }
     }
 }

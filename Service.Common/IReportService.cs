@@ -11,6 +11,9 @@ namespace Service.Common
     public interface IReportService
     {
         [OperationContract]
+        ServiceInformationDto ServiceInformation();
+
+        [OperationContract]
         CustomerDto CustomersForPeriod(DateTime? dateTimeFrom, DateTime? dateTimeTo);
     }
 }

@@ -8,14 +8,10 @@ using System.Threading.Tasks;
 namespace Service.Common
 {
     [ServiceContract]
-    public interface IDataService
+    public interface IPingService
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         [TransactionFlow(TransactionFlowOption.NotAllowed)]
-        ServiceInformationDto ServiceInformation();
-
-        [OperationContract]
-        [TransactionFlow(TransactionFlowOption.Mandatory)]
-        void SaveCustomers(IEnumerable<CustomerDto> customers);
+        void Ping();
     }
 }

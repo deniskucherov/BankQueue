@@ -64,6 +64,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -102,25 +103,34 @@
     <Compile Include="Converters\AgeGroupToQueueItemHeightConverter.cs" />
     <Compile Include="Converters\CustomerWorkPlacePresentationConverter.cs" />
     <Compile Include="Converters\GenderToColorConverter.cs" />
+    <Compile Include="Converters\ServiceConnectionStatusToVisibility.cs" />
     <Compile Include="Converters\WorkStateToWorkPlaceActiveConverter.cs" />
     <Compile Include="DomainEvents\ClearQueueEvent.cs" />
     <Compile Include="DomainEvents\CustomerArrivedEvent.cs" />
     <Compile Include="DomainEvents\CustomerRejectedEvent.cs" />
     <Compile Include="DomainEvents\CustomerServedEvent.cs" />
     <Compile Include="DomainEvents\CustomerServeStartsEvent.cs" />
+    <Compile Include="DomainEvents\DataServiceConnectioinStatusChanged.cs" />
+    <Compile Include="DomainEvents\ReportServiceConnectionStatusChanged.cs" />
     <Compile Include="DomainEvents\RoomMonitorSyncEvent.cs" />
     <Compile Include="Model\BankAdministrator.cs" />
     <Compile Include="Model\CustomerParser.cs" />
+    <Compile Include="Model\DataServiceWorker.cs" />
+    <Compile Include="Model\ReportServiceWorker.cs" />
+    <Compile Include="Model\ServiceDemon.cs" />
+    <Compile Include="Model\ServiceWorker.cs" />
     <Compile Include="ViewModel\AdminViewModel.cs" />
     <Compile Include="ViewModel\CashDeskViewModel.cs" />
     <Compile Include="ViewModel\CommonServiceViewModel.cs" />
     <Compile Include="ViewModel\CommonSyncViewModel.cs" />
     <Compile Include="ViewModel\CommonViewModel.cs" />
+    <Compile Include="ViewModel\DataServiceViewModel.cs" />
     <Compile Include="ViewModel\DepartmentViewModel.cs" />
     <Compile Include="ViewModel\EntranceViewModel.cs" />
     <Compile Include="ViewModel\OperatingRoomViewModel.cs" />
     <Compile Include="ViewModel\QueueStatViewModel.cs" />
     <Compile Include="ViewModel\QueueViewModel.cs" />
+    <Compile Include="ViewModel\ReportServiceViewModel.cs" />
     <Compile Include="View\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
@@ -252,6 +262,10 @@
       <Project>{fcf90492-fdec-4dea-a7c9-afaf4bc34d0a}</Project>
       <Name>BankStatistic.Module</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Service.Common\Service.Common.csproj">
+      <Project>{278ba42b-7f97-497a-a1ab-f37275280228}</Project>
+      <Name>Service.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\demographic32.png" />
@@ -270,6 +284,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\bank32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\refresh32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

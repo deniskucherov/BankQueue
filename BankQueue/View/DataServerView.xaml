@@ -4,7 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankQueue.View"
+             xmlns:converters="clr-namespace:BankQueue.Converters"
+             xmlns:viewModel="clr-namespace:BankQueue.ViewModel"
+             d:DataContext="{d:DesignInstance viewModel:DataServiceViewModel}"
              mc:Ignorable="d" Style="{DynamicResource DepartmentControlStyle}">
+   <UserControl.Resources>
+        <converters:ServiceConnectionStatusToVisibility x:Key="ConnectionStatusChanged" />
+   </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -13,8 +19,9 @@
 
         <TextBlock Text="DATA SERVICE" Style="{DynamicResource DepartmentTitleStyle}" />
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Label Content="0" />
-            <Label Content="net.tcp://127.0.0.1:8010" />
+            <Image Source="../Img/refresh32.png" Visibility="{Binding Status, Mode=OneWay, Converter={StaticResource ConnectionStatusChanged}}" 
+                   Height="16" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center" />
+            <Label Content="net.tcp://127.0.0.1:8010" VerticalAlignment="Center" />
         </StackPanel>
     </Grid>
 </UserControl>

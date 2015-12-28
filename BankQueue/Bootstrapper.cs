@@ -23,6 +23,8 @@ namespace BankQueue
 {
     internal sealed class Bootstrapper : UnityBootstrapper
     {
+        private ServiceDemon _serviceDemon;
+
         protected override void InitializeShell()
         {
             var wnd = (Window) Shell;
@@ -100,11 +102,13 @@ namespace BankQueue
 
             Container.RegisterType<IOperationProcessor, OperationRoomProcessor>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IStampProvider, CashierDesk>(new ContainerControlledLifetimeManager());
-                 
+
             Container.RegisterType<IAdministrator, BankAdministrator>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IOfficeInformation, BankAdministrator>(new ContainerControlledLifetimeManager());
 
             Container.RegisterType<IDepartmentManager, DepartmentManager>(new ContainerControlledLifetimeManager());
-;        }
+
+            _serviceDemon = Container.Resolve<ServiceDemon>();
+        }
     }
 }

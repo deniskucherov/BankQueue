@@ -53,9 +53,10 @@ namespace BankServiceHost
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Ooops.. Service start error.", ex);
+                Console.WriteLine(ex.ToString());
+                Console.ReadLine();
+                return;
             }
-
 
             Console.WriteLine("{0} --> BANK SERVICE IS RUNNING ...", DateTime.Now);
             Console.ReadLine();

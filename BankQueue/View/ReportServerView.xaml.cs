@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankQueue.Core.Annotations;
+using BankQueue.ViewModel;
 
 namespace BankQueue.View
 {
@@ -20,9 +22,12 @@ namespace BankQueue.View
     /// </summary>
     public partial class ReportServerView : UserControl
     {
-        public ReportServerView()
+        public ReportServerView([NotNull] ReportServiceViewModel viewModel)
         {
+            if (viewModel == null) throw new ArgumentNullException("viewModel");
+
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }
