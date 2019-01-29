@@ -24,5 +24,10 @@ namespace Tests.Integration
         {
 
         }
+
+        public void TestBankEntityCrud()
+        {
+
+        }
     }
 }
