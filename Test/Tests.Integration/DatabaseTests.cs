@@ -18,5 +18,11 @@ namespace Tests.Integration
         {
             Assert.IsTrue(result);
         }
+
+        [Test]
+        public void TestFunction()
+        {
+
+        }
     }
 }
