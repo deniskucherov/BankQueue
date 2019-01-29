@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Test\UnitTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Integration", "Test\Tests.Integration\Tests.Integration.csproj", "{9160A417-216E-465D-9511-EC51E6F4E493}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{31E806D4-3649-4BDC-9EE7-D039FB9D5E10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketDog.Common", "..\SocketDog\SocketDog\SocketDog.Common\SocketDog.Common.csproj", "{13C314AC-118B-41AF-9448-7F8E909B4783}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +69,10 @@ Global
 		{9160A417-216E-465D-9511-EC51E6F4E493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9160A417-216E-465D-9511-EC51E6F4E493}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9160A417-216E-465D-9511-EC51E6F4E493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13C314AC-118B-41AF-9448-7F8E909B4783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13C314AC-118B-41AF-9448-7F8E909B4783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13C314AC-118B-41AF-9448-7F8E909B4783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13C314AC-118B-41AF-9448-7F8E909B4783}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +80,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3210D4B9-5B4D-42A9-B3EC-D9E6F525B748} = {07C439BE-45D8-4038-B1C3-B6B5DAA575AB}
 		{9160A417-216E-465D-9511-EC51E6F4E493} = {07C439BE-45D8-4038-B1C3-B6B5DAA575AB}
+		{13C314AC-118B-41AF-9448-7F8E909B4783} = {31E806D4-3649-4BDC-9EE7-D039FB9D5E10}
 	EndGlobalSection
 EndGlobal

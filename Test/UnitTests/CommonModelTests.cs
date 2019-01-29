@@ -22,5 +22,12 @@ namespace UnitTests
             Assert.AreEqual(age, person.Age);
             Assert.AreEqual(sex, person.Sex);
         }
+
+        [Test]
+        public void LogErrorTest()
+        {
+            var logger = new LoggerStub();
+            logger.LogError(new InvalidOperationException("Hello error!"));
+        }
     }
 }

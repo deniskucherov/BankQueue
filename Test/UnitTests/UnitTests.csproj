@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonModelTests.cs" />
+    <Compile Include="LoggerStub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\SocketDog\SocketDog\SocketDog.Common\SocketDog.Common.csproj">
+      <Project>{13c314ac-118b-41af-9448-7f8e909b4783}</Project>
+      <Name>SocketDog.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Bank.Common\Bank.Common.csproj">
       <Project>{f8eefbd4-8138-4bcd-a4c0-7975b7369968}</Project>
       <Name>Bank.Common</Name>
