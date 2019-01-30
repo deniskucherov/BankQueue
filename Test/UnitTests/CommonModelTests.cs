@@ -27,7 +27,7 @@ namespace UnitTests
         public void LogErrorTest()
         {
             var logger = new LoggerStub();
-            logger.LogError(new InvalidOperationException("Hello error!"));
+            logger.LogError(new NotImplementedException("Hello error!"));
         }
     }
 }

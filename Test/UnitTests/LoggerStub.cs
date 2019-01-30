@@ -11,17 +11,17 @@ namespace UnitTests
     {
         public void LogError(Exception ex)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void LogInformation(string message)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void LogTrace(string message)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

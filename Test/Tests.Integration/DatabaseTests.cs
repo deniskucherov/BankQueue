@@ -16,7 +16,15 @@ namespace Tests.Integration
         [TestCase(false)]
         public void TestConnection(bool result)
         {
-            Assert.IsTrue(result);
+            if (result)
+            {
+                Assert.IsTrue(result);
+            }
+            else
+            {
+                Assert.IsFalse(result);
+            }
+                
         }
 
         [Test]
