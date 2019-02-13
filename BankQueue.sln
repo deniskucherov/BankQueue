@@ -23,56 +23,82 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Test\UnitTests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Integration", "Test\Tests.Integration\Tests.Integration.csproj", "{9160A417-216E-465D-9511-EC51E6F4E493}"
 EndProject
+<<<<<<< HEAD
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{31E806D4-3649-4BDC-9EE7-D039FB9D5E10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketDog.Common", "..\SocketDog\SocketDog\SocketDog.Common\SocketDog.Common.csproj", "{13C314AC-118B-41AF-9448-7F8E909B4783}"
+=======
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9D357E1C-8074-4803-B831-463FA5A9F6CE}"
+>>>>>>> remotes/origin/pre-production
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		TeamCity|Any CPU = TeamCity|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D0A24A94-7CCE-4720-B095-3C9097ABE2BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0A24A94-7CCE-4720-B095-3C9097ABE2BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0A24A94-7CCE-4720-B095-3C9097ABE2BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0A24A94-7CCE-4720-B095-3C9097ABE2BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A24A94-7CCE-4720-B095-3C9097ABE2BE}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{D0A24A94-7CCE-4720-B095-3C9097ABE2BE}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
 		{005D5F22-852B-4DB9-8305-8803AD984AE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{005D5F22-852B-4DB9-8305-8803AD984AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{005D5F22-852B-4DB9-8305-8803AD984AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{005D5F22-852B-4DB9-8305-8803AD984AE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{005D5F22-852B-4DB9-8305-8803AD984AE3}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{005D5F22-852B-4DB9-8305-8803AD984AE3}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
 		{278BA42B-7F97-497A-A1AB-F37275280228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{278BA42B-7F97-497A-A1AB-F37275280228}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{278BA42B-7F97-497A-A1AB-F37275280228}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{278BA42B-7F97-497A-A1AB-F37275280228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{278BA42B-7F97-497A-A1AB-F37275280228}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{278BA42B-7F97-497A-A1AB-F37275280228}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
 		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{FCF90492-FDEC-4DEA-A7C9-AFAF4BC34D0A}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
 		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{F8EEFBD4-8138-4BCD-A4C0-7975B7369968}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
 		{8E0B1B19-695D-4B94-BEE8-CB9DEF20D174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E0B1B19-695D-4B94-BEE8-CB9DEF20D174}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E0B1B19-695D-4B94-BEE8-CB9DEF20D174}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E0B1B19-695D-4B94-BEE8-CB9DEF20D174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E0B1B19-695D-4B94-BEE8-CB9DEF20D174}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{8E0B1B19-695D-4B94-BEE8-CB9DEF20D174}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
 		{639D1EF7-481E-4D4A-B172-649FC37783F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{639D1EF7-481E-4D4A-B172-649FC37783F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{639D1EF7-481E-4D4A-B172-649FC37783F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{639D1EF7-481E-4D4A-B172-649FC37783F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{639D1EF7-481E-4D4A-B172-649FC37783F0}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{639D1EF7-481E-4D4A-B172-649FC37783F0}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
 		{3210D4B9-5B4D-42A9-B3EC-D9E6F525B748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3210D4B9-5B4D-42A9-B3EC-D9E6F525B748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3210D4B9-5B4D-42A9-B3EC-D9E6F525B748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3210D4B9-5B4D-42A9-B3EC-D9E6F525B748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3210D4B9-5B4D-42A9-B3EC-D9E6F525B748}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{3210D4B9-5B4D-42A9-B3EC-D9E6F525B748}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
 		{9160A417-216E-465D-9511-EC51E6F4E493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9160A417-216E-465D-9511-EC51E6F4E493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9160A417-216E-465D-9511-EC51E6F4E493}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9160A417-216E-465D-9511-EC51E6F4E493}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{13C314AC-118B-41AF-9448-7F8E909B4783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13C314AC-118B-41AF-9448-7F8E909B4783}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13C314AC-118B-41AF-9448-7F8E909B4783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13C314AC-118B-41AF-9448-7F8E909B4783}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{9160A417-216E-465D-9511-EC51E6F4E493}.TeamCity|Any CPU.ActiveCfg = TeamCity|Any CPU
+		{9160A417-216E-465D-9511-EC51E6F4E493}.TeamCity|Any CPU.Build.0 = TeamCity|Any CPU
+>>>>>>> remotes/origin/pre-production
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

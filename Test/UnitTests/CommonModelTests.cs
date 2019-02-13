@@ -14,6 +14,7 @@ namespace UnitTests
         [Test]
         [TestCase("Ivan", 20, Gender.M)]
         [TestCase("Olga", 30, Gender.F)]
+		[TestCase("XXX", 0, Gender.F)]
         public void Person(string name, int age, Gender sex)
         {
             var person = new Person(name, age, sex);
